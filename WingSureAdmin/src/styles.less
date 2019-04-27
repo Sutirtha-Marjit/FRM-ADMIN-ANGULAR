@@ -1,1 +1,62 @@
 /* You can add global styles to this file, and also import other style files */
+.app-wrap{
+    background-color: #f0f0f0;
+    width:100%;
+    margin:0px;
+    padding:0px;
+    min-height:1200px;
+}
+h1,h2,h3,h4,h5,h6{
+    font-family: 'Roboto', sans-serif;
+}
+
+p,span,div{
+  font-family: 'Lato', sans-serif;
+}
+
+.roundSquare{
+    border-radius:10px;
+}
+
+.roundBtn{
+    border-radius: 130px;
+}
+
+.float-left{
+    float:left;
+}
+
+.align-left{
+    text-align:left;
+}
+
+.align-right{
+    text-align:right;
+}
+
+.inline-block{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.icon{
+    display: inline-block;
+    width:16px;
+    height: 16px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+
+    &.icon-arrow-green{
+        background-image: url('/assets/svgs/down-arrow-green.svg');        
+    }
+
+    &.icon-search{
+        background-image: url('/assets/svgs/search.svg');        
+    }
+    &.icon-settings{
+        background-image: url('/assets/svgs/setting.svg');        
+    }
+    &.icon-notify{
+        background-image: url('/assets/svgs/notification.svg');        
+    }
+}

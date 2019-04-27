@@ -4,11 +4,12 @@ import { DashboardComponent } from './comps/pages/dashboard/dashboard.component'
 
 const routes: Routes = [
   {path:'admin-dashboard',component:DashboardComponent},
-  {path:'/',redirectTo:'admin-dashboard'}
+  {path:'',pathMatch:'full',redirectTo:'admin-dashboard'},
+  {path:'dashboard',pathMatch:'full',redirectTo:'admin-dashboard'}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{useHash:true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

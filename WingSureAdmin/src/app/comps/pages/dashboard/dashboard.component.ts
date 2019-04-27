@@ -7,7 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
+  private statisticsCakeArray = [{},{},{},{}];
   constructor() { }
+
+  getStatisticsCake(){
+    return this.statisticsCakeArray;
+  }
 
   ngOnInit() {
   }

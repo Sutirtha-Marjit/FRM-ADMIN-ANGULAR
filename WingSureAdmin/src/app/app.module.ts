@@ -8,6 +8,10 @@ import { UserWelcomeComponent } from './comps/utils/user-welcome/user-welcome.co
 import { StatisticsCakeComponent } from './comps/elements/statistics-cake/statistics-cake.component';
 import { DashboardComponent } from './comps/pages/dashboard/dashboard.component';
 import { ManageContentComponent } from './comps/pages/manage-content/manage-content.component';
+import { HeaderSegmentComponent } from './comps/utils/header-segment/header-segment.component';
+import { SelectBoxComponent } from './comps/utils/select-box/select-box.component';
+
+import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap'
 
 @NgModule({
   declarations: [
@@ -16,11 +20,14 @@ import { ManageContentComponent } from './comps/pages/manage-content/manage-cont
     UserWelcomeComponent,
     StatisticsCakeComponent,
     DashboardComponent,
-    ManageContentComponent
+    ManageContentComponent,
+    HeaderSegmentComponent,
+    SelectBoxComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbDropdownModule
   ],
   providers: [],
   bootstrap: [AppComponent]

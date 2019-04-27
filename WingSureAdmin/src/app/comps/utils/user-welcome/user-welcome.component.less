@@ -1,0 +1,54 @@
+.user-wrap{
+    >*{
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .name-container{
+        font-size: 0px;
+        cursor: pointer;
+        .name{
+          display: inline-block;
+          vertical-align: middle;
+          font-size: 12px;
+          font-weight: bold;
+          width: 80px;
+          text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;  
+        }
+        .arrow{
+          width:20px; 
+          display: inline-block;
+          vertical-align: middle;
+          height:30px;
+          background-image: url('/assets/svgs/down-arrow.svg');
+          background-repeat:  no-repeat;
+          background-size: 60% auto;
+          background-position: 50%;  
+        }
+        width: 110px;
+
+        &:hover{
+            .name{
+               color:#74dd93; 
+            }
+            .arrow{               
+                background-repeat:  no-repeat;
+                background-image: url('/assets/svgs/down-arrow-green.svg');               
+              }
+        }
+    }
+
+    .user-image{
+        width:32px;
+        height: 32px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 250px;
+        img{
+            width:100%;
+            height: auto;
+        }
+    }
+}

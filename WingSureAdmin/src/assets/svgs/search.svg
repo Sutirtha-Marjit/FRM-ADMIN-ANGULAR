@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+    <defs>
+        <style>
+            .cls-1{fill:#b7b7b7}
+        </style>
+    </defs>
+    <path id="search" d="M18.018 17.141L14.7 13.819a7.069 7.069 0 1 0-.867.867l3.322 3.322a.614.614 0 1 0 .867-.867zM3.471 9.286A5.826 5.826 0 1 1 9.3 15.128a5.826 5.826 0 0 1-5.829-5.842z" class="cls-1" transform="translate(-2.214 -2.204)"/>
+</svg>
