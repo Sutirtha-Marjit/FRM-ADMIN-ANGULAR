@@ -11,9 +11,7 @@
         </div>
         <div class="row-content">
           <div class="row">
-            <div class="col-md-3">
-                <app-statistics-cake></app-statistics-cake>
-            </div>
+            <ng-container [ngTemplateOutlet]="StatisticsCakeSection"></ng-container>
           </div>
           
         </div>
@@ -23,3 +21,12 @@
   </div>
 
 </div>
+
+
+
+
+<ng-template #StatisticsCakeSection>
+  <div class="col-md-3" *ngFor="let cake of statisticsCakeArray">
+    <app-statistics-cake [config]="cake"></app-statistics-cake>
+  </div>
+</ng-template>

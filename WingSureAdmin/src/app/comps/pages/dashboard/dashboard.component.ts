@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {StatCakeConfig} from '../../../datatypes/Datatypes';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  private statisticsCakeArray = [{},{},{},{}];
+  private statisticsCakeArray:Array<StatCakeConfig> = [];
   constructor() { }
 
   getStatisticsCake(){
@@ -15,6 +16,31 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.statisticsCakeArray = [
+      {
+        bigText:'78451',
+        smallText:'Total content uploaded',
+        bgColor:'#16739a',
+        isDark:true
+      },
+      {
+        bigText:'1000',
+        smallText:'Total content uploaded',
+        isDark:false
+      },
+      {
+        bigText:'78451',
+        smallText:'Total content uploaded',
+        bgColor:'#16739a',
+        isDark:true
+      },
+      {
+        bigText:'78451',
+        smallText:'Total content uploaded',
+        bgColor:'#16739a',
+        isDark:true
+      }
+    ]
   }
 
 }

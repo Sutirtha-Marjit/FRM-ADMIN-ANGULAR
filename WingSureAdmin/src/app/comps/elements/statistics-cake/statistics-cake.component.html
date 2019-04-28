@@ -1,3 +1,6 @@
-<p>
-  statistics-cake works!
-</p>
+<div class="statistics-cake-wrap">
+  <div class="cake roundSquare big-shadow {{getDarkClass()}}" [ngStyle]="{'background':config.bgColor}">
+      <div><small>{{config.smallText}}</small></div>
+      <div class="big-text">{{getBigNumber()}}</div>
+  </div>
+</div>
