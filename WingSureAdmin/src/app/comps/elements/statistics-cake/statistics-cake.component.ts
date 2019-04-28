@@ -28,6 +28,13 @@ export class StatisticsCakeComponent implements OnInit {
     return className;
   }
 
+  getPreloaderClass(){
+    if(this.config.isDark){
+      return 'preloader-light';
+    }
+    return 'preloader-dark';
+  }
+
   getBigNumber(){
     const t = parseInt(this.config.bigText);
     return t.toLocaleString();

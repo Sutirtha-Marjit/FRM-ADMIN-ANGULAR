@@ -14,6 +14,27 @@ p,span,div{
   font-family: 'Lato', sans-serif;
 }
 
+.preloader{
+   display:inline-block;
+   width:16px;
+   height:16px;
+   overflow:hidden;
+   position: relative;   
+   background-repeat: no-repeat;
+   background-size: 100% auto;
+   background-position: center center; 
+   animation: continuousRotate infinite 5s linear;
+   
+   &-dark{
+    background-image:url('/assets/svgs/preloader-dark.svg'); 
+  }
+
+  &-light{
+    background-image:url('/assets/svgs/preloader-light.svg'); 
+  }
+   
+}
+
 .roundSquare{
     border-radius:10px;
 }
@@ -62,5 +83,39 @@ p,span,div{
     }
     &.icon-notify{
         background-image: url('/assets/svgs/notification.svg');        
+    }
+}
+
+
+
+@keyframes continuousRotate{
+    from{
+        transform: rotateZ(0deg);
+    }
+
+    to{
+        transform: rotateZ(359deg);
+    }
+}
+
+@keyframes appear{
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity: 1;
+    }
+}
+
+@keyframes appearSide{
+    from{
+        opacity:0;
+        transform: translateX(5px);
+    }
+
+    to{
+        opacity: 1;
+        transform: translateX(0px);
     }
 }

@@ -10,6 +10,7 @@ import { DashboardComponent } from './comps/pages/dashboard/dashboard.component'
 import { ManageContentComponent } from './comps/pages/manage-content/manage-content.component';
 import { HeaderSegmentComponent } from './comps/utils/header-segment/header-segment.component';
 import { SelectBoxComponent } from './comps/utils/select-box/select-box.component';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap'
 
@@ -27,7 +28,8 @@ import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap'
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbDropdownModule
+    NgbDropdownModule,
+    HighchartsChartModule
   ],
   providers: [],
   bootstrap: [AppComponent]
