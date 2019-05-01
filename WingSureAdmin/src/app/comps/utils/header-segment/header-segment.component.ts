@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-header-segment',
@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderSegmentComponent implements OnInit {
 
+  @Output() uploadClick = new EventEmitter<MouseEvent>();
   constructor() { }
 
   ngOnInit() {
+  }
+
+  uploadAction($event){
+    this.uploadClick.emit($event);
   }
 
 }

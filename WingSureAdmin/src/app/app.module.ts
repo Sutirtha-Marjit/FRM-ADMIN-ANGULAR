@@ -12,7 +12,9 @@ import { HeaderSegmentComponent } from './comps/utils/header-segment/header-segm
 import { SelectBoxComponent } from './comps/utils/select-box/select-box.component';
 import { HighchartsChartModule } from 'highcharts-angular';
 
-import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap'
+import {NgbDropdownModule, NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
+import { UploadFrontScreenComponent } from './comps/pages/upload-front-screen/upload-front-screen.component';
+import { UploadExpandScreenComponent } from './comps/pages/upload-expand-screen/upload-expand-screen.component'
 
 @NgModule({
   declarations: [
@@ -23,12 +25,15 @@ import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap'
     DashboardComponent,
     ManageContentComponent,
     HeaderSegmentComponent,
-    SelectBoxComponent
+    SelectBoxComponent,
+    UploadFrontScreenComponent,
+    UploadExpandScreenComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbDropdownModule,
+    NgbModalModule,
     HighchartsChartModule
   ],
   providers: [],

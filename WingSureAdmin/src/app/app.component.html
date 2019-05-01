@@ -1,5 +1,5 @@
 <div class="app-wrap">
-  <app-header-segment>
+  <app-header-segment (uploadClick)="uploadAction($event)">
 
   </app-header-segment>
   <div class="body-content">
@@ -11,3 +11,8 @@
   </footer>
   
 </div>
+
+
+<ng-template #uploadWindowTPL>
+  <app-upload-front-screen></app-upload-front-screen>
+</ng-template>
