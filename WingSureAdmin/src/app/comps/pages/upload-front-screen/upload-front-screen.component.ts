@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Output, EventEmitter} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-upload-front-screen',
@@ -9,7 +10,10 @@ export class UploadFrontScreenComponent implements OnInit {
 
   optionSelected = false;
   options = [];
-  constructor() { }
+
+
+  @Output() goAhedClick = new EventEmitter<any>();
+  constructor(private router:Router) { }
 
 
   ngOnInit() {
@@ -36,6 +40,11 @@ export class UploadFrontScreenComponent implements OnInit {
     }                
   ]
 
+  }
+
+  goAhead(){
+    this.goAhedClick.emit({});
+    this.router.navigateByUrl('content-upload');
   }
 
   selectThisOption(item){

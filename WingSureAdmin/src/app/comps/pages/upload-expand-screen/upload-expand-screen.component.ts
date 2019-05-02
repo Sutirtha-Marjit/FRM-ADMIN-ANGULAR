@@ -7,9 +7,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UploadExpandScreenComponent implements OnInit {
 
+
+  private operationClass='';
   constructor() { }
 
   ngOnInit() {
+  }
+
+  dragoverTest(){
+    this.operationClass  ='operation';
+  }
+
+  dropTest(){
+    this.operationClass  ='';
+  }
+
+  getOperationClass(){
+    return this.operationClass;
   }
 
 }

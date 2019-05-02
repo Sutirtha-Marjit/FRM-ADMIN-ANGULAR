@@ -14,6 +14,10 @@ export class AppComponent {
 
   }
 
+  onUploadScreenRequest(){
+    this.modalService.dismissAll();
+  }
+
   uploadAction($event){
     
     this.modalService.open(this.uploadWindowTPL,{windowClass:'upload-action-modal',size:'lg'});

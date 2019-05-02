@@ -58,6 +58,12 @@ p,span,div{
 
 .roundBtn{
     border-radius: 130px;
+
+    &.bigger-padding{
+        padding:10px 20px;
+        font-size:12px;     
+          
+    }
 }
 
 .big-shadow{
@@ -101,7 +107,22 @@ p,span,div{
     &.icon-l2{
         width:38px;
         height:38px;  
-      }
+    }
+
+    &.icon-l3{
+        width:40px;
+        height:40px;  
+    }
+
+    &.icon-l4{
+        width:50px;
+        height:50px;  
+    }
+
+    &.icon-l5{
+        width:60px;
+        height:60px;  
+    }
 
     &.icon-arrow-green{
         background-image: url('/assets/svgs/down-arrow-green.svg');        
@@ -132,8 +153,28 @@ p,span,div{
     &.icon-photo{
         background-image: url('/assets/svgs/photo.svg');  
     }
+
+    &.icon-upload{
+        background-image: url('/assets/svgs/upload.svg');  
+    }
 }
 
+.upload-sign{
+    position: relative;
+    width: 120px;
+    height:120px;
+    .svg-container{
+        position: absolute;
+        top:0px;
+        left:0px;
+        width:120px;
+        height:120px;
+    }
+    .icon-holder{
+        position: relative;
+        padding-top: 28px;
+    }
+}
 
 
 @keyframes continuousRotate{
