@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {FormControl} from '@angular/forms';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import {FileUploadService} from '../../../facility/file-upload.service';
 
 @Component({
   selector: 'app-upload-expand-screen',
@@ -19,7 +19,10 @@ export class UploadExpandScreenComponent implements OnInit {
   Go ahead and start an article. 
   <br/><br/><br/><br/>
   Your creation is a <span class="text-success"><b>priceless reward</b></span>  to us... :) </p><br/><br/><br/><br/>`;
-  constructor(private activateRoute:ActivatedRoute) {
+  constructor(
+    private activateRoute:ActivatedRoute,
+    private fUploadService:FileUploadService
+    ) {
 
    }
 
@@ -29,14 +32,17 @@ export class UploadExpandScreenComponent implements OnInit {
     });
   }
 
+
   dragoverTest(ev){
     ev.preventDefault();
     this.operationClass  ='operation';
   }
 
-  dropTest(ev){
+  dropTest(ev:DragEvent){
+    
     ev.preventDefault();
     this.operationClass  ='';
+    this.fUploadService.handleUpload(ev.dataTransfer.items);
   }
 
   getOperationClass(){
