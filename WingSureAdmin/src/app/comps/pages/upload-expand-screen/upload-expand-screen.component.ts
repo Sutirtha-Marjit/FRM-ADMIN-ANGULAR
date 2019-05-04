@@ -29,11 +29,13 @@ export class UploadExpandScreenComponent implements OnInit {
     });
   }
 
-  dragoverTest(){
+  dragoverTest(ev){
+    ev.preventDefault();
     this.operationClass  ='operation';
   }
 
-  dropTest(){
+  dropTest(ev){
+    ev.preventDefault();
     this.operationClass  ='';
   }
 
