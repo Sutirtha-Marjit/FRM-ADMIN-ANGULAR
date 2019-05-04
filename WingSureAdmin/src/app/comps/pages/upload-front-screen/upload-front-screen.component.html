@@ -2,8 +2,8 @@
   <h4 class="text-semi-light soft-heading-1">Select the category you want to upload</h4>
   <br/>
   <div class="row">
-      <div class="col" *ngFor="let item of options">
-      <a (click)="selectThisOption(item)" class="btn {{getSelectedClas(item)}} btn-short-box" style="padding-top:38px; cursor:pointer;">
+      <div class="col" *ngFor="let item of options; let i=index">
+      <a (click)="selectThisOption(item,i)" class="btn {{getSelectedClas(item)}} btn-short-box" style="padding-top:38px; cursor:pointer;">
         <div><i class="icon icon-l1 icon-{{item.icon}}"></i></div>
         <h6>{{item.title}}</h6>
       </a>

@@ -8,6 +8,8 @@ const routes: Routes = [
   {path:'',pathMatch:'full',redirectTo:'admin-dashboard'},
   {path:'dashboard',pathMatch:'full',redirectTo:'admin-dashboard'},
   {path:'content-upload',component:UploadExpandScreenComponent},
+  {path:'content-upload/:mediaType',component:UploadExpandScreenComponent},
+ 
   
 ];
 

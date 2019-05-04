@@ -9,6 +9,7 @@ import {Router} from '@angular/router';
 export class UploadFrontScreenComponent implements OnInit {
 
   optionSelected = false;
+  optionSelectedIndex=null;
   options = [];
 
 
@@ -42,17 +43,20 @@ export class UploadFrontScreenComponent implements OnInit {
 
   }
 
+ 
+
   goAhead(){
     this.goAhedClick.emit({});
-    this.router.navigateByUrl('content-upload');
+    this.router.navigateByUrl(`content-upload/${this.options[this.optionSelectedIndex].title}`);
   }
 
-  selectThisOption(item){
+  selectThisOption(item,i=0){
     this.options.forEach((opt)=>{
       opt.selected=false;
     })
     item.selected=true;
     this.optionSelected = true;
+    this.optionSelectedIndex = i;
   }
 
   getSelectedClas(item){
