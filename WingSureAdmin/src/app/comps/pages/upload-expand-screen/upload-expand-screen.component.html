@@ -4,9 +4,11 @@
   <ng-container *ngIf="tplChoice!=='ARTICLE'" [ngTemplateOutlet]="tplFileUpload"></ng-container>
 </div>
 
-<ng-template #tplFileUpload>
+<div class="upload-states-panel">
+<div class="container-fluid"></div>
+</div>
 
-    
+<ng-template #tplFileUpload>    
     <div class="roundSquare align-center appear" style="padding:50px; background:#fff; width:700px; position: relative; margin: 0 auto;">
       <h4 class="text-semi-light soft-heading-1">Drag and drop files here</h4>  
       <div class="drag-drop-area align-center roundSquare {{getOperationClass()}}" (drop)="dropTest($event)" (dragover)="dragoverTest($event)">
@@ -19,8 +21,7 @@
       <div class="align-center">
         <button class="btn btn-outline-success roundBtn bigger-padding" sty>UPLOAD THROUGH LINK</button>
       </div>
-    </div>    
-
+    </div>
 </ng-template>
 
 <ng-template #tplEditor>
@@ -66,4 +67,9 @@
     <div class="icon-holder align-center"><i class="icon icon-upload icon-l5"></i></div>
   </div>
   
+</ng-template>
+
+
+<ng-template #uploadStateMonitorTPL>
+  <app-upload-state-monitor></app-upload-state-monitor>
 </ng-template>

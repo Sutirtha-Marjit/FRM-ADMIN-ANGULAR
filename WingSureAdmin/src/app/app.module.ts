@@ -15,7 +15,8 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 import {NgbDropdownModule, NgbModalModule} from '@ng-bootstrap/ng-bootstrap';
 import { UploadFrontScreenComponent } from './comps/pages/upload-front-screen/upload-front-screen.component';
-import { UploadExpandScreenComponent } from './comps/pages/upload-expand-screen/upload-expand-screen.component'
+import { UploadExpandScreenComponent } from './comps/pages/upload-expand-screen/upload-expand-screen.component';
+import { UploadStateMonitorComponent } from './comps/elements/upload-state-monitor/upload-state-monitor.component'
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { UploadExpandScreenComponent } from './comps/pages/upload-expand-screen/
     HeaderSegmentComponent,
     SelectBoxComponent,
     UploadFrontScreenComponent,
-    UploadExpandScreenComponent
+    UploadExpandScreenComponent,
+    UploadStateMonitorComponent
   ],
   imports: [
     BrowserModule,

@@ -62,7 +62,7 @@ export class UploadFrontScreenComponent implements OnInit {
   getSelectedClas(item){
     let className='btn-outline-semi-light';
     if(item.selected){
-      className = 'btn-outline-primary';
+      className = 'btn-outline-success active';
     }
 
     return className;
