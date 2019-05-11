@@ -9,7 +9,7 @@ export class RequestURLService {
   constructor() { }
 
   private urlBOX = {
-    fileUpload:'wingsure_crop_insurance-0.0.1/rest/api/uploadfile';
+    fileUpload:'wingsure_crop_insurance-0.0.1/rest/api/uploadfile'
   };
   getBaseURL(){
     return this.baseURL;
