@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {StatCakeConfig} from '../../../datatypes/Datatypes';
 import * as Highcharts from 'highcharts';
+import {} from 'highcharts-angular';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,11 +22,15 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+    const chartWidth = document.querySelector('.chart-container').clientWidth;
     this.Highcharts = Highcharts;
     this.chartConstructor = 'chart';
     this.megaChartOptions = {
       title:{text:'Avarage view'},
       subtitle:{text:'A data snap shot'},
+      chart:{
+        width:Math.ceil(chartWidth*(98/100))
+      },
       yAxis:{
         title:{
           text:'Duration in hrs'
