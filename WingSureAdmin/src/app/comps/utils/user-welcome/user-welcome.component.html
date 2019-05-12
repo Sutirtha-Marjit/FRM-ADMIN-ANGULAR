@@ -1,9 +1,20 @@
-<div class="user-wrap">
-  <div class="user-image">
-    <img [src]="'./assets/images/user-avtar.png'"/>
-  </div>
-  <div class="name-container" title="Surdas Chakraborty">
-    <span class="name">Surdas Chakraborty</span>
-    <span class="arrow"></span>
+
+<div ngbDropdown class="d-inline-block">
+    <div class="user-wrap" id="dropdownBasic1" ngbDropdownToggle>
+        <div class="user-image">
+          <img [src]="'./assets/images/user-avtar.png'"/>
+        </div>
+        <div class="name-container" title="Surdas Chakraborty">
+          <span class="name">Surdas Chakraborty</span>
+          <span class="arrow"></span>
+        </div>
+      </div>
+  <!-- <button class="btn btn-sm btn-outline-secondary roundBtn" id="dropdownBasic1" ngbDropdownToggle>Toggle dropdown</button> -->
+  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+    <div class="align-center">
+    <small class="text-dark">Surdas Chakraborty</small>  
+    </div>
+    <button class="btn-primary" ngbDropdownItem>Signout</button>
+    
   </div>
 </div>
