@@ -1,5 +1,5 @@
 (function() {
-  var AUTH_PATH = 'http://ec2-18-236-104-250.us-west-2.compute.amazonaws.com:8080/wingsure_login-0.0.1/oauth/token';
+  var AUTH_PATH = 'http://ec2-18-236-104-250.us-west-2.compute.amazonaws.com:8080/wingsure_dashboard-0.0.1/oauth/token';
   var EL = {
       LOGIN_FORM: document.querySelector('form[data-action="login-form"]'),
       LOGIN_BUTTON: document.querySelector('button[data-action="loginpost"]'),

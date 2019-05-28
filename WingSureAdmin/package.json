@@ -3,8 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "cpLogin":"node cp.js",
     "start": "ng serve",
-    "build": "ng build",
+    "ngbuild":"ng build",
+    "build": "npm run ngbuild & npm run cpLogin",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -23,6 +25,7 @@
     "@ckeditor/ckeditor5-angular": "^1.1.0",
     "@ckeditor/ckeditor5-build-classic": "^12.1.0",
     "@ng-bootstrap/ng-bootstrap": "^4.1.1",
+    "copy-dir": "^1.1.0",
     "core-js": "^2.5.4",
     "highcharts": "^7.1.1",
     "highcharts-angular": "^2.4.0",
