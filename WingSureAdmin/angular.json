@@ -48,7 +48,7 @@
             "styles": [
               "src/styles.less"
             ],
-            "scripts": []
+            "scripts": ["additionals/carousel.js"]
           },
           "configurations": {
             "production": {

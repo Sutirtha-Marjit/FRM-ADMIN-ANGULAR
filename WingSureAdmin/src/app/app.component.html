@@ -1,13 +1,11 @@
 <div class="app-wrap">
-  <app-header-segment (uploadClick)="uploadAction($event)">
-
+  <app-header-segment (uploadClick)="uploadAction($event)" *ngIf="loginProperties.loggedIn">
   </app-header-segment>
-  <div class="body-content">
+  <div class="body-content loggedIn-{{loginProperties.loggedIn}}">
       <router-outlet></router-outlet>
   </div>
   
-  <footer>
-        
+  <footer *ngIf="loginProperties.loggedIn">        
   </footer>
   
 </div>
