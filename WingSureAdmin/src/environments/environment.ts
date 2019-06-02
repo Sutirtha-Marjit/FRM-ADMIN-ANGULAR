@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API_ROOT:'http://localhost:8080/'
+  API_ROOT:'http://localhost:8080/wingsure_dashboard-0.0.1'
 };
 
 /*

@@ -5,8 +5,8 @@
     "ng": "ng",
     "cpLogin":"node cp.js",
     "start": "ng serve",
-    "ngbuild":"ng build",
-    "build": "npm run ngbuild & npm run cpLogin",
+    "ngbuild":"ng build --prod",
+    "build": "npm run ngbuild",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

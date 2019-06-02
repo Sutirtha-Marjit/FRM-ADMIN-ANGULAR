@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import {HttpClientModule, HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS} from '@angular/common/http';
+
 import { AppComponent } from './app.component';
 import { ModalComponent } from './comps/utils/modal/modal.component';
 import { UserWelcomeComponent } from './comps/utils/user-welcome/user-welcome.component';
@@ -19,6 +21,7 @@ import { UploadExpandScreenComponent } from './comps/pages/upload-expand-screen/
 import { UploadStateMonitorComponent } from './comps/elements/upload-state-monitor/upload-state-monitor.component';
 import { LoginScreenComponent } from './comps/login-screen/login-screen.component'
 
+import {CommonRequestInterceptor} from './interceptors/CommonRequestInterceptor.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,9 +44,13 @@ import { LoginScreenComponent } from './comps/login-screen/login-screen.componen
     NgbDropdownModule,
     NgbModalModule,
     HighchartsChartModule,
-    CKEditorModule
+    CKEditorModule,
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    {provide:HTTP_INTERCEPTORS,useClass:CommonRequestInterceptor,multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
