@@ -2,7 +2,7 @@
   <app-header-segment (uploadClick)="uploadAction($event)" *ngIf="loginProperties.loggedIn">
   </app-header-segment>
   <div class="body-content loggedIn-{{loginProperties.loggedIn}}">
-      <router-outlet></router-outlet>
+      <router-outlet (activate)='onActivate($event)'></router-outlet>
   </div>
   
   <footer *ngIf="loginProperties.loggedIn">        

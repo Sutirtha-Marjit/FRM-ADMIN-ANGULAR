@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
-import {HttpClient} from '@angular/common/http';
+import {RawHttpService} from '../../facility/raw-http.service';
+import {AuthTokenObject} from '../../datatypes/Datatypes';
+import {CommonRequestInterceptor} from '../../interceptors/CommonRequestInterceptor.service';
 
 @Component({
   selector: 'app-login-screen',
@@ -10,10 +12,16 @@ import {HttpClient} from '@angular/common/http';
 export class LoginScreenComponent implements OnInit {
 
   public loginFormMain:FormGroup = null;
-  
-  constructor(private http:HttpClient) { 
+  public whenLoginSuccessful = new EventEmitter<AuthTokenObject>();
+  public loginError = false;
+  constructor(
+    private http:RawHttpService,
+    private interceptor:CommonRequestInterceptor
+    ) { 
     
   }
+
+  
 
   submitAction(e){
     e.preventDefault();
@@ -23,13 +31,19 @@ export class LoginScreenComponent implements OnInit {
       const frmData = new FormData();
       frmData.set('grant_type','password');
       frmData.set('username',this.loginFormMain.value.toSigninUserName);
-      frmData.set('password',this.loginFormMain.value.toSigninPassword);     
-      this.http.post('oauth/token',frmData)
-      .subscribe((data:any)=>{
-        alert(JSON.stringify(data));
+      frmData.set('password',this.loginFormMain.value.toSigninPassword);  
+      
+      this.http.request(frmData,'POST','/oauth/token',true,'wingsure','password123',true).subscribe((tokenData:AuthTokenObject)=>{
+        if(tokenData.access_token){
+          this.interceptor.saveToken(tokenData);
+        }else{
+          this.loginError = true;
+        }
+        
       },(error)=>{
-        alert(JSON.stringify(error));
+        this.loginError = true;
       });
+      
     }
   }
 
