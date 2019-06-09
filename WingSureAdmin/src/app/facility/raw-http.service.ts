@@ -38,14 +38,15 @@ export class RawHttpService {
         const xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = ()=>{
             if(xmlhttp.readyState === 4){
-                
-                if(xmlhttp.status >=400){
-                    
+                console.log(xmlhttp.status);
+                if(xmlhttp.status ===0){
+                    reject(this.fixDataType(xmlhttp.responseText).data);
+                }
+                if(xmlhttp.status >=400){                    
                     reject(this.fixDataType(xmlhttp.responseText).data);
                 }
 
-                if(xmlhttp.status >=200 && xmlhttp.status <300){
-                    
+                if(xmlhttp.status >=200 && xmlhttp.status <300){                    
                     resolve(this.fixDataType(xmlhttp.responseText).data);
                 }
 

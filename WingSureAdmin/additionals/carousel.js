@@ -36,6 +36,8 @@ var wingsureCarouselSetup = function(){
     ];
     var tplContent, tplBtnContent, tpl = document.getElementById('tpl'),
         tplBtn = document.getElementById('tplPagButton');
+        carouselDiv.innerHTML='';
+        paginationBase.innerHTML='';
     if (tpl && tplBtn) {
         CarouselData.forEach(function(data, i) {
             var p = i + 1;

@@ -31,9 +31,7 @@ export class CommonRequestInterceptor implements HttpInterceptor{
                 withCredentials:true,
                 url:modfURL,
                 setHeaders: {
-                    Authorization : `Bearer ${this.token}`,
-                    Application : 'Winsure-Admin-Front-end',
-                    FrontEnd :'Angular 6'
+                    Authorization : `Bearer ${this.token}`                    
                 }
             });
         }

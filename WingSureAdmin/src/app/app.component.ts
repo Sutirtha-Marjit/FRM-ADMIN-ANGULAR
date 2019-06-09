@@ -1,6 +1,7 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { NgbModal }  from '@ng-bootstrap/ng-bootstrap';
 import { LoginScreenComponent} from './comps/login-screen/login-screen.component';
+import {CommonRequestInterceptor} from './interceptors/CommonRequestInterceptor.service';
 import {NavigationEnd, Router, RouterOutlet} from '@angular/router';
 import {AuthTokenObject} from './datatypes/Datatypes';
 
@@ -15,7 +16,11 @@ export class AppComponent implements OnInit{
   
   loginProperties = null;
 
-  constructor(private router:Router, private modalService: NgbModal){
+  constructor(
+  private router:Router, 
+  private modalService: NgbModal, 
+  private interceptor:CommonRequestInterceptor,){
+	  
     this.loginProperties = {
       loggedIn:false,
       user:null
@@ -35,7 +40,9 @@ export class AppComponent implements OnInit{
   onActivate(loadedComponent:any){
     if(loadedComponent instanceof LoginScreenComponent){
       loadedComponent.whenLoginSuccessful.subscribe((tokenObj:AuthTokenObject)=>{
-        window.sessionStorage.setItem('token',JSON.stringify(tokenObj));
+        this.interceptor.saveToken(tokenObj);
+        this.loginProperties.loggedIn = true;
+        this.router.navigateByUrl('admin-dashboard');
       })
     }
   }

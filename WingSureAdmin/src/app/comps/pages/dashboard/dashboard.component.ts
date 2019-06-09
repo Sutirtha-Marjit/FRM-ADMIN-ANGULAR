@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {StatCakeConfig} from '../../../datatypes/Datatypes';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../../../environments/environment';
 import * as Highcharts from 'highcharts';
 import {} from 'highcharts-angular';
 
@@ -15,13 +17,20 @@ export class DashboardComponent implements OnInit {
   public megaChartOptions:any = null; 
   public Highcharts = null;
   public chartConstructor = '';
-  constructor() { }
+  constructor(private http:HttpClient) { }
 
   getStatisticsCake(){
     return this.statisticsCakeArray;
   }
 
   ngOnInit() {
+
+    this.http.get(environment.API_ROOT+'/all/count').subscribe((data)=>{
+      console.log(data);
+    },(error)=>{
+
+    });
+
     const chartWidth = document.querySelector('.chart-container').clientWidth;
     this.Highcharts = Highcharts;
     this.chartConstructor = 'chart';
