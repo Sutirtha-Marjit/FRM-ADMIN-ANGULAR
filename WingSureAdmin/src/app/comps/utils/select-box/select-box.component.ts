@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-select-box',
@@ -7,9 +7,41 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SelectBoxComponent implements OnInit {
 
+
+  @Input() options:Array<{name:string,val:string, selected:boolean}> = []; 	
+  @Output() whenSelect = new EventEmitter<{name:string,val:string, selected:boolean}>();
+  
+  
   constructor() { }
 
   ngOnInit() {
   }
-
+  
+  getSelected(){
+	  const e = this.options.find((el)=>{
+		  return el.selected;
+	  });
+	  
+	  if(e){
+		return e.name;  
+	  }else{
+		return '';  
+	  }
+  }
+  
+  optionSelect(selected){
+	  
+	  const e = this.options.find((el)=>{
+		  return el.selected;
+	  });
+	  
+	  if(e){
+		  e.selected = false;
+	  }
+	  
+	  if(this.options[selected]){
+		  this.options[selected].selected = true;
+		  this.whenSelect.emit(this.options[selected]);
+	  }
+  }
 }

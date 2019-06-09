@@ -6,7 +6,7 @@
             <h6>Analytics Overview</h6>
           </div>
           <div class="col-md-6 align-right">
-            <app-select-box></app-select-box>
+            <app-select-box (whenSelect)="onTImeSlotSelected($event)" [options]="statisticsTimeIntervalOptions"></app-select-box>
           </div>
         </div>
         <div class="row-content">

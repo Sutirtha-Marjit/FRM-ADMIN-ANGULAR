@@ -59,8 +59,8 @@ export class LoginScreenComponent implements OnInit , AfterViewChecked{
     
     
     this.loginFormMain = new FormGroup({
-      toSigninUserName : new FormControl('',Validators.required),
-      toSigninPassword : new FormControl('',Validators.required)      
+      toSigninUserName : new FormControl('sut',Validators.required),
+      toSigninPassword : new FormControl('password123',Validators.required)      
     });
 
     

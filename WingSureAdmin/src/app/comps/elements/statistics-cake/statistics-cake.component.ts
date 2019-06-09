@@ -8,12 +8,15 @@ import {StatCakeConfig} from '../../../datatypes/Datatypes';
 })
 export class StatisticsCakeComponent implements OnInit {
 
+  
+
   @Input() config:StatCakeConfig = {
     bgColor:'#ffffff',
-    bigText:'1000',
-    smallText:'smallText',
+    bigText:'',
+    smallText:'',
     graphData:{},
-    isDark:true
+    isDark:true,
+    inProgress:true
   }
   constructor() { }
 

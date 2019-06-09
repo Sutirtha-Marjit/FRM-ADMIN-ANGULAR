@@ -26,11 +26,12 @@
 
 <ng-template #tplEditor>
   <div class="roundSquare align-left appear" style="padding:50px; background:#fff; width:700px; position: relative; margin: 0 auto;">
-    <h4>Create new content</h4>
+    <div *ngIf="!articlePreviewOn" class="editor-container">
+      <h4>Create new content</h4>
     <form>
         <div class="form-group">
           <label for="exampleInputEmail1">Title</label>
-          <input type="text" class="form-control" id="articleTitle" placeholder="Enter title of the article">
+          <input [(ngModel)]="articleTitle" type="text" class="form-control" name="articleTitle" id="articleTitle" placeholder="Enter title of the article">
           <small id="articleTitleHelp" class="form-text text-muted">Please don't leave title blank</small>
         </div>
     </form>   
@@ -45,13 +46,25 @@
         </div>
         <div class="col align-right">
             <div class="btn-group">
-                <button class="btn btn-sm btn-outline-secondary">DELETE</button>
-                <button class="btn btn-sm btn-outline-secondary" routerLink="dashboard">CANCEL</button>
-                <button class="btn btn-sm btn-outline-secondary">PREVIEW</button>
-                <button class="btn btn-sm btn-success">PUBLISH</button>
+                <button class="btn btn-sm btn-outline-secondary" routerLink="/admin-dashboard">CANCEL</button>
+                <button class="btn btn-sm btn-outline-secondary" (click)="articlePreview(true)">PREVIEW</button>
+                <button class="btn btn-sm btn-success" (click)="articlePublish();">PUBLISH</button>
             </div>
          </div>
       </div>
+      
+    </div>
+    </div>
+    <div class="preview" *ngIf="articlePreviewOn">
+      <div class="btn-group"><button class="btn btn-sm btn-success" (click)="articlePreview(false)">back</button></div>
+      <hr/>
+      <h2 class="text-success">{{articleTitle}}</h2>
+      
+      <div class="paper">
+        <div [innerHTML]="aertclePreviewHTML"></div>
+      </div>
+      <br/>
+      <div class="btn-group"><button class="btn btn-sm btn-success" (click)="articlePreview(false)">back</button></div>
       
     </div>
   </div>

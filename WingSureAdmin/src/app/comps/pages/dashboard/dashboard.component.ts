@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {StatCakeConfig} from '../../../datatypes/Datatypes';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {environment} from '../../../../environments/environment';
 import * as Highcharts from 'highcharts';
 import {} from 'highcharts-angular';
@@ -12,24 +12,58 @@ import {} from 'highcharts-angular';
 })
 export class DashboardComponent implements OnInit {
 
+  
   private statisticsCakeArray:Array<StatCakeConfig> = [];
+  public statisticsTimeIntervalOptions:Array<{name:string,val:number, selected:boolean}>=[];
   
   public megaChartOptions:any = null; 
   public Highcharts = null;
   public chartConstructor = '';
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient) {
 
+	this.statisticsTimeIntervalOptions = [
+	{name:'3 days', val:3, selected:false},
+	{name:'3 months', val:3*30, selected:true},
+	{name:'6 months', val:6*30, selected:false},
+	{name:'12 months', val:365, selected:false},
+	{name:'2 years', val:365*2, selected:false},
+	];
+	
+	}
+
+  onTImeSlotSelected(e){
+	  alert(e.val);
+  }
+	
   getStatisticsCake(){
     return this.statisticsCakeArray;
   }
 
-  ngOnInit() {
-
-    this.http.get(environment.API_ROOT+'/all/count').subscribe((data)=>{
+  private loadStatisticsCakes(){
+    
+    this.http.get('/api/articles/all').subscribe((data)=>{
       console.log(data);
     },(error)=>{
 
     });
+
+    this.http.get('/api/articles/all/count').subscribe((data)=>{
+      console.log(data);
+    },(error)=>{
+
+    });
+    
+    
+    this.http.get('/api/articles/trending?no_of_days=90').subscribe((data)=>{
+      console.log(data);
+    },(error)=>{
+
+    });
+  }
+
+  ngOnInit() {
+    
+    this.loadStatisticsCakes();
 
     const chartWidth = document.querySelector('.chart-container').clientWidth;
     this.Highcharts = Highcharts;
@@ -82,22 +116,26 @@ export class DashboardComponent implements OnInit {
         bigText:'78451',
         smallText:'Total content uploaded',
         bgColor:'#16739a',
-        isDark:true
+        isDark:true,
+        inProgress:true
       },
       {
         bigText:'1000',
         smallText:'Viewed',
-        isDark:false
+        isDark:false,
+        inProgress:true
       },
       {
         bigText:'78451',
         smallText:'Downloaded',
-        isDark:false
+        isDark:false,
+        inProgress:true
       },
       {
         bigText:'78451',
         smallText:'Liked',
-        isDark:false
+        isDark:false,
+        inProgress:true
       }
     ]
   }

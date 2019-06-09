@@ -1,8 +1,10 @@
 <div ngbDropdown class="d-inline-block">
-    <button class="btn btn-sm btn-outline-secondary roundBtn" id="dropdownBasic1" ngbDropdownToggle>Toggle dropdown</button>
+    <button class="btn btn-sm btn-outline-secondary roundBtn" id="dropdownBasic1" ngbDropdownToggle>{{getSelected()}}</button>
     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-      <button ngbDropdownItem>Action - 1</button>
-      <button ngbDropdownItem>Another Action</button>
-      <button ngbDropdownItem>Something else is here</button>
+      <ng-container *ngFor="let item of options;let i = index">
+		<button class="active" *ngIf="item.selected" ngbDropdownItem (click)="optionSelect(i)" >{{item.name}}</button>  
+		<button *ngIf="!item.selected" ngbDropdownItem (click)="optionSelect(i)" >{{item.name}}</button>  
+	  </ng-container>
+	     
     </div>
-  </div>
+</div>

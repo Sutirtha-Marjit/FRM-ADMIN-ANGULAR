@@ -3,7 +3,8 @@ export interface StatCakeConfig{
     smallText:string,
     graphData?:any,
     bgColor?:string,
-    isDark?:boolean
+    isDark?:boolean,
+    inProgress:boolean
 }
 
 export interface AuthTokenObject{
