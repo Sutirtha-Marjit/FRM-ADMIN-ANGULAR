@@ -3,6 +3,8 @@ import {ActivatedRoute} from "@angular/router";
 import {HttpClient, HttpParams} from '@angular/common/http';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {FileUploadService} from '../../../facility/file-upload.service';
+import {CommonRequestInterceptor} from '../../../interceptors/CommonRequestInterceptor.service';
+import {FileUploadStatusInfo, AdvFormData} from '../../../datatypes/Datatypes';
 
 @Component({
   selector: 'app-upload-expand-screen',
@@ -13,10 +15,10 @@ export class UploadExpandScreenComponent implements OnInit {
 
 
   private operationClass='';
-  public tplChoice=null;
+  tplChoice=null;
   
-  public Editor = ClassicEditor;
-  public editorData=`<h4>Welcome</h4>
+  Editor = ClassicEditor;
+  editorData=`<h4>Welcome</h4>
   <p>Pen and paper are impatient for your creation. 
   Go ahead and start an article. 
   <br/><br/><br/><br/>
@@ -25,10 +27,13 @@ export class UploadExpandScreenComponent implements OnInit {
   aertclePreviewHTML = '';
   articleTitle='';
   
+  fileUploadPipe:Array<FileUploadStatusInfo> = [];
+
   constructor(
     private activateRoute:ActivatedRoute,
     private fUploadService:FileUploadService,
-    private http:HttpClient
+    private http:HttpClient,
+    private cmnRI:CommonRequestInterceptor
     ) {
 
    }
@@ -44,7 +49,19 @@ export class UploadExpandScreenComponent implements OnInit {
     params.append('tags','farm');
     params.append('tags','farm');
     this.http.post('/api/articles/add',{params:);*/
-      alert('article posted!');
+    //alert('article posted!');
+    const toPost = {
+      tags:'farm,innovation,indian,myth,truth',
+      comment:'lorem ipsum dolor to uivit',
+      title:'Article01',
+      content_type:this.tplChoice,
+      uploaded_file_name:'',
+      content_url:'',
+      uploaded_by:'sut',
+      uploaded_file_size:'0'
+    };
+
+    this.http.post('/api/articles/add',this.cmnRI.createFormDataObj(toPost)).subscribe(()=>{},()=>{});
   }
 
   articlePreview(signal){
@@ -60,11 +77,35 @@ export class UploadExpandScreenComponent implements OnInit {
     this.operationClass  ='operation';
   }
 
-  dropTest(ev:DragEvent){
-    
+  dropTest(ev:DragEvent){    
     ev.preventDefault();
     this.operationClass  ='';
-    this.fUploadService.handleUpload(ev.dataTransfer.items);
+    this.manageUploadStatusList(this.fUploadService.prepareFormData(ev.dataTransfer.items,this.tplChoice));
+    
+  }
+
+  manageUploadStatusList(advFrmData: AdvFormData) {
+
+    advFrmData.meta.forEach((el,i) => {
+
+      const a: FileUploadStatusInfo = {
+        id: `${Math.random()}`.replace('.', el.name),
+        contentURL: '',
+        inProgress: false,
+        title: 'An Image',
+        description: 'Some description...',
+        tags: 'insurance,agriculture',
+        mediaTYpe: this.tplChoice,
+        defaultThumbnailPath: '',
+        file:advFrmData.data.get(`toupload_${i}`)
+      };
+      
+      this.fileUploadPipe.push(a);
+      
+    })
+
+    window.scrollTo(0,550);
+    
   }
 
   getOperationClass(){

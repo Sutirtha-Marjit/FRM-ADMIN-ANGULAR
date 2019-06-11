@@ -15,3 +15,21 @@ export interface AuthTokenObject{
     expires_in?:string
 }
 
+export interface AdvFormData{
+
+    meta:Array<{name:string,filetype:string}>,
+    data:FormData
+
+}
+
+export interface FileUploadStatusInfo{
+    id:string,
+    contentURL:string,
+    inProgress:boolean,
+    title:string,
+    description:string,
+    tags:string,
+    mediaTYpe:string,
+    defaultThumbnailPath:string,
+    file?:any
+}

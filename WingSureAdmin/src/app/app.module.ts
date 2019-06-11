@@ -22,6 +22,7 @@ import { UploadStateMonitorComponent } from './comps/elements/upload-state-monit
 import { LoginScreenComponent } from './comps/login-screen/login-screen.component'
 
 import {CommonRequestInterceptor} from './interceptors/CommonRequestInterceptor.service';
+import { UploadStatusBoxComponent } from './comps/elements/upload-status-box/upload-status-box.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +36,8 @@ import {CommonRequestInterceptor} from './interceptors/CommonRequestInterceptor.
     UploadFrontScreenComponent,
     UploadExpandScreenComponent,
     UploadStateMonitorComponent,
-    LoginScreenComponent
+    LoginScreenComponent,
+    UploadStatusBoxComponent
   ],
   imports: [
     BrowserModule,

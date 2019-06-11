@@ -54,5 +54,16 @@ export class CommonRequestInterceptor implements HttpInterceptor{
         return tokenObj;
     }
 
+    createFormDataObj(obj:any):FormData{
+        const frmData = new FormData();
+        const keys = Object.keys(obj);
+
+        keys.forEach((key)=>{
+            frmData.set(key,obj[key]);
+        });
+
+        return frmData;
+    }
+
 
 }

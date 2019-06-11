@@ -1,0 +1,32 @@
+
+<div class="roundSquare appear" style="padding:20px; background:white; margin-bottom:20px;">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="thumbnail-box roundSquare">
+        <div class="img-container">
+          <img [src]="bgImage"/>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <form>
+        <div class="form-group">
+          <label for="titleInput">Title &nbsp;&nbsp;&nbsp;<small class="text-secondary" style="opacity:0.2;">{{info.id}}</small></label>
+          <input type="text" [(ngModel)]="info.title" class="form-control form-control-sm" id="titleInput" name="titleInput" placeholder="Enter title">          
+        </div>
+        <div class="form-group">
+          <label for="titleInput">Description</label>
+          <textarea  [(ngModel)]="info.description" class="form-control form-control-sm" id="titleInput" name="descInput" placeholder="Enter title">    </textarea>      
+        </div>
+        <div class="form-group">
+          <label for="tagsInput">Title &nbsp;&nbsp;&nbsp;<small class="text-secondary" style="opacity:0.2;">{{info.tags}}</small></label>
+          <input type="text" [(ngModel)]="info.tags" class="form-control form-control-sm" id="tagsInput" name="tagsInput" placeholder="Enter tags">          
+        </div>
+
+        </form>    
+    </div>
+  </div>
+  
+</div>
+  
+
