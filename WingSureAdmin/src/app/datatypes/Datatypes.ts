@@ -34,3 +34,17 @@ export interface FileUploadStatusInfo{
     defaultThumbnailPath:string,
     file?:any
 }
+
+export interface FeaturedBlockDataSet{
+    id?:string;
+    pattern:string;
+    heading?:string;
+    viewd:number;
+    liked:number;
+    downloaded:number;
+    listened:number;
+    dateOfPublish:Date;
+    thumbnail:string;
+    expandURL?:string;
+    resourceURL:string;
+}

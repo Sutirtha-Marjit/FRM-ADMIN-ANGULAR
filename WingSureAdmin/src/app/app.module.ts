@@ -23,6 +23,7 @@ import { LoginScreenComponent } from './comps/login-screen/login-screen.componen
 
 import {CommonRequestInterceptor} from './interceptors/CommonRequestInterceptor.service';
 import { UploadStatusBoxComponent } from './comps/elements/upload-status-box/upload-status-box.component';
+import { FeaturedDataBlockComponent } from './comps/elements/featured-data-block/featured-data-block.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +38,8 @@ import { UploadStatusBoxComponent } from './comps/elements/upload-status-box/upl
     UploadExpandScreenComponent,
     UploadStateMonitorComponent,
     LoginScreenComponent,
-    UploadStatusBoxComponent
+    UploadStatusBoxComponent,
+    FeaturedDataBlockComponent
   ],
   imports: [
     BrowserModule,
