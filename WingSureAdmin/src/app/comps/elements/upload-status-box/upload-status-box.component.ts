@@ -10,6 +10,7 @@ export class UploadStatusBoxComponent implements OnInit, OnChanges {
 
 
   bgImage:any;
+  localVideoPath='';
 
   @Input() info:FileUploadStatusInfo = {
     
@@ -27,6 +28,7 @@ export class UploadStatusBoxComponent implements OnInit, OnChanges {
 
   showSelectedFIle(fileObj){
     if(this.info.mediaTYpe==='IMAGE'){
+
       if(FileReader){
         const fReader = new FileReader();
         fReader.onload = (e:any)=>{
@@ -35,8 +37,24 @@ export class UploadStatusBoxComponent implements OnInit, OnChanges {
         fReader.readAsDataURL(fileObj);
 
       }
+      
+    }else{
+      
+      if(FileReader){
+        const fReader = new FileReader();
+        fReader.onload = (e:any)=>{
+          this.localVideoPath =  e.target.result;
+        };
+        fReader.readAsDataURL(fileObj);
+
+      }
     }
     
+  }
+
+  getExactFileSize(size){
+    const s = (size/1024)/1024;
+    return `${s.toFixed(2)}MB`;
   }
 
   ngOnChanges(){

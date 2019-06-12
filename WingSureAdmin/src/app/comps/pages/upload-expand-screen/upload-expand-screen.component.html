@@ -10,14 +10,18 @@
 
 <ng-template #tplFileUpload>    
     <div class="roundSquare align-center appear" style="padding:50px; background:#fff; width:700px; position: relative; margin: 0 auto;">
-      <h4 class="text-semi-light soft-heading-1">Drag and drop files here</h4>  
+      <h4 class="text-semi-light soft-heading-1">
+        Drag and drop files here
+        <span *ngIf="tplChoice==='IMAGE'" class="icon icon-l1 icon-photo" style="display:inline-block; transform:translateY(5px)"></span>
+        <span *ngIf="tplChoice==='VIDEO'" class="icon icon-l1 icon-play" style="display:inline-block; transform:translateY(5px)"></span>
+      </h4>  
       <div class="drag-drop-area align-center roundSquare {{getOperationClass()}}" (drop)="dropTest($event)" (dragover)="dragoverTest($event)">
           <ng-container [ngTemplateOutlet]="bigCircle"></ng-container>
       </div>      
       <div class="align-center">
         <div style="position: relative; margin:0 auto; width:240px;">          
           <div class="position:absolute; top:0px; left:50%;">
-            <button class="btn btn-outline-success roundBtn bigger-padding" sty>BROWSE FROM YOUR COMPUTER</button>
+            <button class="btn btn-outline-success roundBtn bigger-padding" (click)="openSelectWindow()">BROWSE FROM YOUR COMPUTER</button>
           </div> 
           <ng-container [ngTemplateOutlet]="inputTypeFile"></ng-container>         
         </div>
@@ -95,7 +99,7 @@
 </ng-template>
 
 <ng-template #inputTypeFile>
-  <input type='file' name='input_file_field' style="position:absolute; top:0px; left:0px; opacity: 0;"/>
+  <input #fileSelectInput type='file' (change)="inputFileSelect($event)" name='input_file_field' multiple="true" style="position:absolute; top:0px; left:0px; display:none;"/>
 </ng-template>
 
 <ng-template #uploadStatusTPL>

@@ -18,7 +18,8 @@ export interface AuthTokenObject{
 export interface AdvFormData{
 
     meta:Array<{name:string,filetype:string}>,
-    data:FormData
+    data:FormData,
+    rejecteds?:Array<File>
 
 }
 

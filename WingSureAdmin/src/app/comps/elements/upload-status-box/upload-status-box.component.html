@@ -2,10 +2,15 @@
 <div class="roundSquare appear" style="padding:20px; background:white; margin-bottom:20px;">
   <div class="row">
     <div class="col-md-4">
-      <div class="thumbnail-box roundSquare">
+      <div class="thumbnail-box roundSquare" *ngIf="'IMAGE'===info.mediaTYpe">
         <div class="img-container">
           <img [src]="bgImage"/>
         </div>
+        <ng-container [ngTemplateOutlet]="progressbar"></ng-container>
+      </div>
+      <div class="video-thumbnail-box" *ngIf="'VIDEO'===info.mediaTYpe">
+        <video  src="{{localVideoPath}}"></video>
+        <ng-container [ngTemplateOutlet]="progressbar"></ng-container>
       </div>
     </div>
     <div class="col-md-8">
@@ -22,11 +27,24 @@
           <label for="tagsInput">Title &nbsp;&nbsp;&nbsp;<small class="text-secondary" style="opacity:0.2;">{{info.tags}}</small></label>
           <input type="text" [(ngModel)]="info.tags" class="form-control form-control-sm" id="tagsInput" name="tagsInput" placeholder="Enter tags">          
         </div>
-
-        </form>    
+        </form>
+        <br/>
+        <div class="align-right">
+          <button class="btn btn-success roundBtn">Save & Publish</button>
+        </div>    
     </div>
   </div>
   
 </div>
   
 
+
+<ng-template #progressbar>
+  <div class="upload-progress align-center">
+    <div class="row">
+      <small class="col-md-6 text-light align-left">{{info.file.name}}</small>
+      <small class="col-md-6 text-light align-right">{{getExactFileSize(info.file.size)}}</small>
+    </div>
+    <span><i class="preloader preloader-light"></i></span>
+  </div>
+</ng-template>

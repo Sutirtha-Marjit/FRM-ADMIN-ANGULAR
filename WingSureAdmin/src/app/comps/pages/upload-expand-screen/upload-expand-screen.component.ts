@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {HttpClient, HttpParams} from '@angular/common/http';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -29,6 +29,8 @@ export class UploadExpandScreenComponent implements OnInit {
   
   fileUploadPipe:Array<FileUploadStatusInfo> = [];
 
+
+  @ViewChild('fileSelectInput') fileSelectInput = null;
   constructor(
     private activateRoute:ActivatedRoute,
     private fUploadService:FileUploadService,
@@ -72,6 +74,19 @@ export class UploadExpandScreenComponent implements OnInit {
   }
 
 
+  openSelectWindow(){
+    if(this.fileSelectInput){
+      const el = this.fileSelectInput.nativeElement;
+      el.click();
+    }
+  }
+
+  inputFileSelect(e){
+    if(e.target && e.target.files && e.target.files.length>0){
+      this.manageUploadStatusList(this.fUploadService.prepareFormDataForInputFile(e.target.files,this.tplChoice));
+    }
+  }
+
   dragoverTest(ev){
     ev.preventDefault();
     this.operationClass  ='operation';
@@ -103,7 +118,9 @@ export class UploadExpandScreenComponent implements OnInit {
       this.fileUploadPipe.push(a);
       
     })
-
+    if(advFrmData.rejecteds.length>0){
+      alert(advFrmData.rejecteds.length+' files are incompatible!');
+    }
     window.scrollTo(0,550);
     
   }
@@ -111,5 +128,7 @@ export class UploadExpandScreenComponent implements OnInit {
   getOperationClass(){
     return this.operationClass;
   }
+
+ 
 
 }
