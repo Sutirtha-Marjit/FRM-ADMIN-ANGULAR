@@ -30,6 +30,54 @@
         </div>
     </div>
   </div>
+
+  <div class="dashboard-box">
+    <div class="row">
+      <div class="col-md-8">
+        <h6>Most searched topic</h6>
+        <div class="roundSquare" style="background:white;  padding:10px; height:343px;">
+          Coming soon!
+        </div>
+      </div>
+      <div class="col-md-4">
+        <h6>Trending</h6>
+        <div class="roundSquare" style="background:white; padding:10px;">
+          <app-featured-data-block [data]="item" *ngFor="let item of trendingData"></app-featured-data-block>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dashboard-box">
+      <div class="col-md-12">
+          <h6>Most popular video</h6>
+          <div class="roundSquare" style="background:white;  padding:10px;">
+              <app-featured-data-block [data]="item" *ngFor="let item of mostPopularVideos"></app-featured-data-block>
+          </div>
+        </div>
+  </div>
+
+  <div class="dashboard-box">
+      <div class="row">
+          <div class="col-md-8">
+            <h6>Most Popular Articles</h6>
+            <div class="roundSquare" style="background:white; padding:10px;">
+              <div class="row">
+              <div class="col-md-6" *ngFor="let item of mostPopularArticles">
+                  <app-featured-data-block [data]="item" ></app-featured-data-block>
+              </div>        
+            </div>        
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <h6>Most Popular Images</h6>
+            <div class="roundSquare" style="background:white; padding:10px;">
+              <app-featured-data-block [data]="item" *ngFor="let item of mostPopularImages"></app-featured-data-block>
+            </div>
+          </div>
+        </div>
+  </div>
   
 </div>
 

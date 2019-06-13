@@ -39,7 +39,7 @@ export interface FeaturedBlockDataSet{
     id?:string;
     pattern:string;
     heading?:string;
-    viewd:number;
+    viewed:number;
     liked:number;
     downloaded:number;
     listened:number;
@@ -47,4 +47,5 @@ export interface FeaturedBlockDataSet{
     thumbnail:string;
     expandURL?:string;
     resourceURL:string;
+    mediaTYpe:string,
 }

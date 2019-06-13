@@ -1,3 +1,64 @@
 <div class="featured-block">
+   <div class="l0" *ngIf="definedPatterns.l0===data.pattern">
+        <div class="row">
+                <div class="col-md-1">
+                    <div class="resource-thumbnail" [ngStyle]="{backgroundImage:getThumbnail()}">
+                        <div class="icon-set" *ngIf="data.mediaTYpe==='VIDEO'">
+                            <span><i class="icon icon-play-white"></i></span>
+                        </div>
+                        <div class="icon-set" *ngIf="data.mediaTYpe==='ARTICLE'">
+                            <span><i class="icon icon-article-white"></i></span>
+                        </div>
+                        <div class="icon-set" *ngIf="data.mediaTYpe==='PODCAST'">
+                            <span><i class="icon icon-podcast-white"></i></span>
+                        </div>
+    
+                        <div class="icon-set" *ngIf="data.mediaTYpe==='IMAGE'">
+                                <span><i class="icon icon-photo-white"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-11">
+                    <div class="resource-content">
+                        <small><strong>{{data.heading}}</strong></small>
+                        <div style="position: absolute; left:14px; bottom:0px;">
+                            <span style="display:inline-block; margin-right:15px;"><i class="icon icon-eye" style="transform:translateY(4px);"></i> <span class="text-secondary" style="font-size:10px;"> {{data.viewed}}<small></small></span></span>
+                            <span style="display:inline-block; margin-right:15px;"><i class="icon icon-heart" style="transform:translateY(4px); width:10px;"></i> <span class="text-secondary" style="font-size:10px;"> {{data.liked}}<small></small></span></span>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+   </div>
+   <div class="s0" *ngIf="definedPatterns.s0===data.pattern">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="resource-thumbnail" [ngStyle]="{backgroundImage:getThumbnail()}">
+                    <div class="icon-set" *ngIf="data.mediaTYpe==='VIDEO'">
+                        <span><i class="icon icon-play-white"></i></span>
+                    </div>
+                    <div class="icon-set" *ngIf="data.mediaTYpe==='ARTICLE'">
+                        <span><i class="icon icon-article-white"></i></span>
+                    </div>
+                    <div class="icon-set" *ngIf="data.mediaTYpe==='PODCAST'">
+                        <span><i class="icon icon-podcast-white"></i></span>
+                    </div>
 
+                    <div class="icon-set" *ngIf="data.mediaTYpe==='IMAGE'">
+                            <span><i class="icon icon-photo-white"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="resource-content">
+                    <small><strong>{{data.heading}}</strong></small>
+                    <div style="position: absolute; left:14px; bottom:0px;">
+                        <span style="display:inline-block; margin-right:15px;"><i class="icon icon-eye" style="transform:translateY(4px);"></i> <span class="text-secondary" style="font-size:10px;"> {{data.viewed}}<small></small></span></span>
+                        <span style="display:inline-block; margin-right:15px;"><i class="icon icon-heart" style="transform:translateY(4px); width:10px;"></i> <span class="text-secondary" style="font-size:10px;"> {{data.liked}}<small></small></span></span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div> 
 </div>
