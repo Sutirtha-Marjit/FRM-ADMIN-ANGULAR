@@ -75,15 +75,17 @@ export class UploadStatusBoxComponent implements OnInit, OnChanges {
 
   uploadAction() {
     if (this.info.file) {
+      this.info.inProgress = true; 
+      this.uploadError.error = false;
       const formData = new FormData();
       formData.append(this.uploadVarName, this.info.file);
-      this.fUploadService.fileUpload({
-        mediaType: this.info.mediaTYpe,
-        url: this.urlService.getAPIURLS().fileUpload,
-        data: formData
-      }).subscribe((successData) => {
-        this.info.inProgress = false;
-        this.uploadError.error = true;
+      this.fUploadService.fileUpload(
+        this.info.mediaTYpe,
+        this.urlService.getAPIURLS().fileUpload,
+        formData
+      ).subscribe((successData) => {
+        this.info.inProgress = false; 
+        this.uploadError.error = false;
         console.log(successData);
       }, (errorData:HttpErrorResponse) => {
         console.log(errorData);

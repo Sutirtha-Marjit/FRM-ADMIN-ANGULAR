@@ -1,11 +1,12 @@
 <div class="error-box-wrap">
-  <div class="error-box-content">
-     <h4 class="text-danger">{{errorObj.heading}}</h4> 
+  <div class="error-box-content roundSquare">
+     <h5 class="text-danger">{{errorObj.heading}}</h5> 
      <hr class="bg-danger"/>
      <strong>{{errorObj.code}}</strong>
      <hr/>
      <p class="text-secondary">
       {{errorObj.description}}
      </p>
+     <button *ngIf="ctaText.length>0" (click)="callToAction()" class="btn btn btn-success">{{ctaText}}</button>
   </div>
 </div>

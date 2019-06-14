@@ -18,7 +18,7 @@ export class FileUploadService {
   }
 
 
-  fileUpload({mediaType,url,data=null}):Observable<any>{
+  fileUpload(mediaType,url,data=null):Observable<any>{
     let obs:Observable<any>=null;
     let formData = new FormData();
     formData = data;

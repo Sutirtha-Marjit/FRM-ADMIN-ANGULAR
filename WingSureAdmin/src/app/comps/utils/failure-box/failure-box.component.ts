@@ -1,5 +1,6 @@
-import { Component, OnInit,Input,Output } from '@angular/core';
+import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
 import {AppErrorObject} from '../../../datatypes/Datatypes';
+
 
 @Component({
   selector: 'app-failure-box',
@@ -8,15 +9,20 @@ import {AppErrorObject} from '../../../datatypes/Datatypes';
 })
 export class FailureBoxComponent implements OnInit {
 
+  @Input() ctaText = '';
   @Input() errorObj:AppErrorObject = {
     heading:'Error occured',
     code:'400',
     description:'An error occured'
   }
-
+  @Output() action = new EventEmitter<string>();
   constructor() { }
 
   ngOnInit() {
+  }
+
+  callToAction(){
+      this.action.emit('action fired!');
   }
 
 }

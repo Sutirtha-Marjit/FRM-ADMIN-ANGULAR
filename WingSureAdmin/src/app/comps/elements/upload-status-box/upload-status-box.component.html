@@ -58,6 +58,6 @@
 
 <ng-template #errorBox>
     <div class="upload-progress align-center" *ngIf="!info.inProgress && uploadError.error">
-        <app-failure-box [errorObj]="uploadError.errorDetails"></app-failure-box>
+        <app-failure-box [errorObj]="uploadError.errorDetails" [ctaText]="'Try again!'" (action)="uploadAction()"></app-failure-box>
     </div>
 </ng-template>
