@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import {} from '@angular/forms';
+import {HttpClient} from '@angular/common/http';
 import {AdvFormData} from '../datatypes/Datatypes';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,25 @@ export class FileUploadService {
     video:['video/x-flv','video/mp4','application/x-mpegURL','video/MP2T','video/3gpp','video/quicktime','video/x-msvideo','video/x-ms-wmv'],
     article:[]
   }
-  constructor() { }
+  constructor(private http:HttpClient) { 
+
+  }
+
+
+  fileUpload({mediaType,url,data=null}):Observable<any>{
+    let obs:Observable<any>=null;
+    let formData = new FormData();
+    formData = data;
+    if(mediaType==='IMAGE'){
+      return  this.http.post(url,formData);
+    }
+    
+    if(mediaType==='VIDEO'){
+      return  this.http.post(url,formData);
+    }
+
+    return obs;
+  }
 
   checkAllow(fileType,allowMediaType){
     if(allowMediaType==='IMAGE'){

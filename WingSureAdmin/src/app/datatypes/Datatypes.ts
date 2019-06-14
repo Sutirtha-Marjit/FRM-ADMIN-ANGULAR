@@ -49,3 +49,9 @@ export interface FeaturedBlockDataSet{
     resourceURL:string;
     mediaTYpe:string,
 }
+
+export interface AppErrorObject{
+    heading:string,
+    description:string,
+    code:string
+}

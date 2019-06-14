@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="58.07" height="58.07" viewBox="0 0 58.07 58.07">
+    <defs>
+        <style>
+            .cls-1{fill:#0b0b0b;stroke:#fff;stroke-width:1.5px}
+        </style>
+    </defs>
+    <g id="checked" transform="translate(.75 .75)">
+        <g id="Check_Circle">
+            <path id="Path_256" d="M28.285 0A28.285 28.285 0 1 0 56.57 28.285 28.284 28.284 0 0 0 28.285 0zm0 53.034a24.749 24.749 0 1 1 24.749-24.749 24.749 24.749 0 0 1-24.749 24.749z" class="cls-1" data-name="Path 256"/>
+            <path id="Path_257" d="M113.1 122.029l-18.191 18.025-7.568-7.418a1.8 1.8 0 0 0-2.524 0 1.753 1.753 0 0 0 0 2.5l8.837 8.66a1.829 1.829 0 0 0 2.524 0l19.444-19.267a1.756 1.756 0 0 0 0-2.5 1.8 1.8 0 0 0-2.522 0z" class="cls-1" data-name="Path 257" transform="translate(-71.906 -103.656)"/>
+        </g>
+    </g>
+</svg>

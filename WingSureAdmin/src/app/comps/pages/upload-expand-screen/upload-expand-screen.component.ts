@@ -106,7 +106,7 @@ export class UploadExpandScreenComponent implements OnInit {
       const a: FileUploadStatusInfo = {
         id: `${Math.random()}`.replace('.', el.name),
         contentURL: '',
-        inProgress: false,
+        inProgress: true,
         title: 'An Image',
         description: 'Some description...',
         tags: 'insurance,agriculture',
