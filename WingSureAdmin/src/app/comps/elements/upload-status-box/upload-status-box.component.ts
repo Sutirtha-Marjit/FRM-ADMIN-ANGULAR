@@ -1,8 +1,10 @@
-import { Component, OnInit, Input, Output, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output ,EventEmitter} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 import { FileUploadStatusInfo } from '../../../datatypes/Datatypes';
 import { FileUploadService } from '../../../facility/file-upload.service';
 import { RequestURLService } from '../../../facility/request-url.service';
-import {HttpErrorResponse} from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-upload-status-box',
@@ -13,14 +15,18 @@ export class UploadStatusBoxComponent implements OnInit, OnChanges {
 
 
   bgImage: any;
+  finalized = false;
+  finalizedError = false;
+
   localVideoPath = '';
   uploadVarName = 'file';
+  uploadedFileName = '';
   uploadError = {
-    error:false,
-    errorDetails:{
-      heading:'',
-      description:'',
-      code:''
+    error: false,
+    errorDetails: {
+      heading: '',
+      description: '',
+      code: ''
     }
   }
 
@@ -36,9 +42,12 @@ export class UploadStatusBoxComponent implements OnInit, OnChanges {
     defaultThumbnailPath: ''
 
   }
+
+  @Output() onActionComplete = new EventEmitter<FileUploadStatusInfo>();
   constructor(
     private fUploadService: FileUploadService,
-    private urlService: RequestURLService
+    private urlService: RequestURLService,
+    private http:HttpClient
   ) { }
 
   showSelectedFIle(fileObj) {
@@ -75,7 +84,7 @@ export class UploadStatusBoxComponent implements OnInit, OnChanges {
 
   uploadAction() {
     if (this.info.file) {
-      this.info.inProgress = true; 
+      this.info.inProgress = true;
       this.uploadError.error = false;
       const formData = new FormData();
       formData.append(this.uploadVarName, this.info.file);
@@ -83,18 +92,20 @@ export class UploadStatusBoxComponent implements OnInit, OnChanges {
         this.info.mediaTYpe,
         this.urlService.getAPIURLS().fileUpload,
         formData
-      ).subscribe((successData) => {
-        this.info.inProgress = false; 
+      ).subscribe((successData: any) => {
+        this.info.inProgress = false;
         this.uploadError.error = false;
-        console.log(successData);
-      }, (errorData:HttpErrorResponse) => {
-        console.log(errorData);
+        this.info.contentURL = successData.fileDownloadUri;
+        this.uploadedFileName = successData.fileName;
+
+      }, (errorData: HttpErrorResponse) => {
+
         this.info.inProgress = false;
         this.uploadError.error = true;
         this.uploadError.errorDetails = {
-          heading:'Upload Error',
-          code:`${errorData.status}`,
-          description:errorData.message
+          heading: 'Upload Error',
+          code: `${errorData.status}`,
+          description: errorData.message
         }
       });
 
@@ -104,6 +115,28 @@ export class UploadStatusBoxComponent implements OnInit, OnChanges {
   getExactFileSize(size) {
     const s = (size / 1024) / 1024;
     return `${s.toFixed(2)}MB`;
+  }
+
+  publishContent() {
+    const toPost = {
+      tags:this.info.tags,
+      comment:this.info.description,
+      title:this.info.title,
+      content_type:this.info.mediaTYpe,
+      uploaded_file_name:this.uploadedFileName,
+      content_url:this.info.contentURL,
+      uploaded_by:'unknown user',
+      uploaded_file_size:'0'
+    };
+    
+    this.http.post(this.urlService.getAPIURLS().add,toPost).subscribe(()=>{
+      this.finalized = true;
+      setTimeout(()=>{
+        this.onActionComplete.emit(this.info);
+      },2800);
+    },()=>{
+
+    });
   }
 
   ngOnChanges() {

@@ -9,7 +9,8 @@ export class RequestURLService {
   constructor() { }
 
   private urlBOX = {
-    fileUpload:'/admin/api/uploadfile'
+    fileUpload:'/admin/api/uploadfile',
+    add:'/api/articles/add'
   };
   getBaseURL(){
     return this.baseURL;

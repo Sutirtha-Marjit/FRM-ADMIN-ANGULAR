@@ -1,6 +1,12 @@
 
 <div class="roundSquare appear" style="padding:20px; background:white; margin-bottom:20px;">
-  <div class="row">
+  
+  <div  *ngIf="finalized" class="row" style="animation:appearSide 1s ease-out;">
+    <i  class="icon icon-l1 icon-tick" style="margin-left: 12px;"></i>
+    <h5  class="text-success" style="margin-left: 15px; margin-top: 3px;">Successfully updated</h5>
+  </div>
+
+  <div *ngIf="!finalized" class="row">
     <div class="col-md-4">
       <div class="thumbnail-box roundSquare" *ngIf="'IMAGE'===info.mediaTYpe">
         <div class="img-container">
@@ -8,11 +14,14 @@
         </div>
         <ng-container [ngTemplateOutlet]="progressbar"></ng-container>
         <ng-container [ngTemplateOutlet]="errorBox"></ng-container>
+        <ng-container [ngTemplateOutlet]="success"></ng-container>
       </div>
       <div class="video-thumbnail-box" *ngIf="'VIDEO'===info.mediaTYpe">
         <video  src="{{localVideoPath}}"></video>
         <ng-container [ngTemplateOutlet]="progressbar"></ng-container>
         <ng-container [ngTemplateOutlet]="errorBox"></ng-container>
+        <ng-container [ngTemplateOutlet]="success"></ng-container>
+        
       </div>
     </div>
     <div class="col-md-8">
@@ -36,8 +45,8 @@
         </form>
         <br/>
         <div class="align-right">
-          <button *ngIf="info.contentURL.length>0" class="btn btn-success roundBtn">Save & Publish</button>
-          <small *ngIf="info.contentURL.length===0">Upload in progress!</small>
+          <button (click)="publishContent()" *ngIf="info.contentURL.length>0" class="btn btn-success roundBtn">Save & Publish</button>
+          <small class="text-success" *ngIf="info.contentURL.length===0">Upload in progress! <span _ngcontent-c7="" class="preloader preloader-light"></span></small>
         </div>    
     </div>
   </div>
@@ -60,4 +69,10 @@
     <div class="upload-progress align-center" *ngIf="!info.inProgress && uploadError.error">
         <app-failure-box [errorObj]="uploadError.errorDetails" [ctaText]="'Try again!'" (action)="uploadAction()"></app-failure-box>
     </div>
+</ng-template>
+
+<ng-template #success>
+  <div class="align-center roundSquare " style="margin:5%; padding:5%; position:absolute; top:0px; left:0px; width:90%; background:rgba(40,167,69,0.7)" *ngIf="!uploadError.error && !info.inProgress ">
+      <i class="icon icon-tick-white icon-l4"></i>      
+  </div>
 </ng-template>

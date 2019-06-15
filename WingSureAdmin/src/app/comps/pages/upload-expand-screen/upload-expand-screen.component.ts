@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {FileUploadService} from '../../../facility/file-upload.service';
 import {CommonRequestInterceptor} from '../../../interceptors/CommonRequestInterceptor.service';
-import {FileUploadStatusInfo, AdvFormData} from '../../../datatypes/Datatypes';
+import {FileUploadStatusInfo, AdvFormData, AppErrorObject} from '../../../datatypes/Datatypes';
 
 @Component({
   selector: 'app-upload-expand-screen',
@@ -23,9 +23,13 @@ export class UploadExpandScreenComponent implements OnInit {
   Go ahead and start an article. 
   <br/><br/><br/><br/>
   Your creation is a <span class="text-success"><b>priceless reward</b></span>  to us... :) </p><br/><br/><br/><br/>`;
+  articlePublished = false;
   articlePreviewOn=false;
+  articlePublishError = false;
+  articlePublishErrorObj:AppErrorObject = null;
   aertclePreviewHTML = '';
   articleTitle='';
+  articleTags='';
   
   fileUploadPipe:Array<FileUploadStatusInfo> = [];
 
@@ -43,27 +47,37 @@ export class UploadExpandScreenComponent implements OnInit {
   ngOnInit() {
     this.activateRoute.params.subscribe((params)=>{
         this.tplChoice = params.mediaType;
+        console.log('subs');
     });
   }
 
   articlePublish(){
-  /*  const params = new HttpParams();
-    params.append('tags','farm');
-    params.append('tags','farm');
-    this.http.post('/api/articles/add',{params:);*/
-    //alert('article posted!');
+  
     const toPost = {
-      tags:'farm,innovation,indian,myth,truth',
-      comment:'lorem ipsum dolor to uivit',
-      title:'Article01',
+      tags:this.articleTags,
+      comment:this.editorData,
+      title:this.articleTitle,
       content_type:this.tplChoice,
       uploaded_file_name:'',
       content_url:'',
-      uploaded_by:'sut',
+      uploaded_by:'unknown user',
       uploaded_file_size:'0'
     };
 
-    this.http.post('/api/articles/add',this.cmnRI.createFormDataObj(toPost)).subscribe(()=>{},()=>{});
+    this.http.post('/api/articles/add',toPost).subscribe((data)=>{
+      this.articlePreviewOn = false;
+      this.articlePublished = true;
+    },(errorData:HttpErrorResponse)=>{
+      this.articlePreviewOn = false;
+      this.articlePublished = false;
+      this.articlePublishError = true;
+      this.articlePublishErrorObj = {
+        code:`${errorData.status}`,
+        heading:errorData.statusText,
+        description:errorData.message
+      }
+      
+    });
   }
 
   articlePreview(signal){
@@ -71,6 +85,12 @@ export class UploadExpandScreenComponent implements OnInit {
       if(this.articlePreviewOn){
         this.aertclePreviewHTML = this.editorData
       }
+  }
+
+  resetArticleWindow(){
+    this.articlePreviewOn=false;
+    this.articlePublishError = false;
+    this.articlePublished = false;
   }
 
 
@@ -127,6 +147,14 @@ export class UploadExpandScreenComponent implements OnInit {
 
   getOperationClass(){
     return this.operationClass;
+  }
+
+  onActionComplete(e:FileUploadStatusInfo){
+    console.log(e);
+    let d = this.fileUploadPipe.find((el)=>{
+      return el.id === e.id;
+    });
+    d=null;
   }
 
  

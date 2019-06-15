@@ -1,5 +1,5 @@
 <div clas="file-drag-drop-wrap">
-    <br/><br/>
+  <br/><br/>
   <ng-container *ngIf="tplChoice==='ARTICLE'" [ngTemplateOutlet]="tplEditor"></ng-container>
   <ng-container *ngIf="tplChoice!=='ARTICLE'" [ngTemplateOutlet]="tplFileUpload"></ng-container>
 </div>
@@ -37,7 +37,7 @@
 
 <ng-template #tplEditor>
   <div class="roundSquare align-left appear" style="padding:50px; background:#fff; width:700px; position: relative; margin: 0 auto;">
-    <div *ngIf="!articlePreviewOn" class="editor-container">
+    <div *ngIf="!articlePreviewOn && !articlePublished && !articlePublishError" class="editor-container">
       <h4>Create new content</h4>
     <form>
         <div class="form-group">
@@ -49,6 +49,12 @@
     <hr/>
     <ckeditor [editor]="Editor" [(ngModel)]="editorData"></ckeditor> 
     <br/>
+    <form>
+        <div class="form-group">
+            <label for="tagsInputField">Tags</label>
+            <input [(ngModel)]="articleTags" type="text" class="form-control" name="articleTags" id="articleTags" placeholder="Enter tags of the article in comma separated pattern">
+        </div>  
+    </form>
     <hr class="bg-success"/>
     <div class="">
       <div class="row">
@@ -78,6 +84,20 @@
       <div class="btn-group"><button class="btn btn-sm btn-success" (click)="articlePreview(false)">back</button></div>
       
     </div>
+    <div class="article-complete" *ngIf="!articlePreviewOn && articlePublished">
+      <div class="align-center">
+        <br/><br/><br/>
+        <i class="icon icon-l5 icon-tick"></i>
+        <br/><br/><br/>
+        <h3 class="text-dark">Congrats!</h3>
+        <h5 class="text-secondary">Your article has been published</h5>
+        <br/><br/>
+        <a routerLink="/admin-dashboard" class="btn btn-outline-success roundBtn">Go to dashboard</a>
+      </div>
+    </div>
+    <div class="article-error" *ngIf="!articlePreviewOn && !articlePublished && articlePublishError">
+        <app-failure-box (action)="resetArticleWindow()" [ctaText]="'Got it! Go for a fresh attempt'" [errorObj]="articlePublishErrorObj"></app-failure-box>
+    </div>
   </div>
 </ng-template>
 
@@ -105,7 +125,7 @@
 <ng-template #uploadStatusTPL>
   <div class="upload-status-pipe container">
     <ng-container *ngFor="let item of fileUploadPipe">
-      <app-upload-status-box [info]="item"></app-upload-status-box>
+      <app-upload-status-box *ngIf="item" [info]="item" (onActionComplete)=onActionComplete($event)></app-upload-status-box>
     </ng-container>
   </div>
 </ng-template>
