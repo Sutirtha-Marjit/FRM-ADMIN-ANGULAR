@@ -1,7 +1,10 @@
 <div class="statistics-cake-wrap">
-  <div class="cake roundSquare big-shadow {{getDarkClass()}}" [ngStyle]="{'background':config.bgColor}">
+  <div *ngIf="!config.errorData" class="cake roundSquare big-shadow {{getDarkClass()}}" [ngStyle]="{'background':config.bgColor}">
       <span *ngIf="config.inProgress" class="preloader {{getPreloaderClass()}}"></span>
       <div><small>{{config.smallText}}</small></div>
       <div class="big-text">{{getBigNumber()}}</div>
   </div>
+  <div *ngIf="config.errorData" class="cake roundSquare big-shadow" [ngStyle]="{'background':'#fff'}">
+    <app-failure-box [className]="'compact'" [errorObj]="config.errorData"></app-failure-box>
+  </div>  
 </div>

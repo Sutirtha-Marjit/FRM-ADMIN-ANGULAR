@@ -16,7 +16,8 @@ export class StatisticsCakeComponent implements OnInit {
     smallText:'',
     graphData:{},
     isDark:true,
-    inProgress:true
+    inProgress:true,
+    errorData:null
   }
   constructor() { }
 

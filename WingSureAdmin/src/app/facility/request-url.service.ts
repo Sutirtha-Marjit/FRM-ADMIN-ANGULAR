@@ -9,6 +9,11 @@ export class RequestURLService {
   constructor() { }
 
   private urlBOX = {
+    statBoxTimeSlotDetails:'/api/env/get',
+    statBoxTotal:'/api/con/total',
+    statBoxLiked:'/api/con/liked',
+    statBoxDownloaded:'/api/con/downloaded',
+    statBoxViewed:'/api/con/viewed',
     fileUpload:'/admin/api/uploadfile',
     add:'/api/articles/add'
   };

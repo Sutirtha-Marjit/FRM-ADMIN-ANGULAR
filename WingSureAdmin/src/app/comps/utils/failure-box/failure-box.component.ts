@@ -9,6 +9,7 @@ import {AppErrorObject} from '../../../datatypes/Datatypes';
 })
 export class FailureBoxComponent implements OnInit {
 
+  @Input() className = 'normal';
   @Input() ctaText = '';
   @Input() errorObj:AppErrorObject = {
     heading:'Error occured',

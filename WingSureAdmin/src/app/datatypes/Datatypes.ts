@@ -4,7 +4,8 @@ export interface StatCakeConfig{
     graphData?:any,
     bgColor?:string,
     isDark?:boolean,
-    inProgress:boolean
+    inProgress:boolean,
+    errorData:AppErrorObject
 }
 
 export interface AuthTokenObject{

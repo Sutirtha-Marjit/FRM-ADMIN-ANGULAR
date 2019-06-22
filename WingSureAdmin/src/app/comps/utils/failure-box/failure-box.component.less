@@ -13,4 +13,37 @@
             word-wrap: break-word;
         }
     }
+
+    &.compact{
+        .error-box-content{
+            background:white;
+            position: relative;
+            min-width:300px;
+            min-height:0px; 
+            padding:2px;
+            margin: 0 auto;
+
+            h5{
+                font-size:13px;
+                margin:0px 0px 2px 0px;
+                display:inline-block;
+            }
+
+            hr{
+                margin:1px;
+                &.bg-danger{
+                    display:none;
+                }
+            }
+
+            strong{
+                padding-left: 10px;
+            }
+    
+            p{
+                font-size:9px;
+                word-wrap: break-word;
+            }
+        }
+    }
 }
