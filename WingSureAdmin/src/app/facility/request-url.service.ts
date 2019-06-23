@@ -10,10 +10,14 @@ export class RequestURLService {
 
   private urlBOX = {
     statBoxTimeSlotDetails:'/api/env/get',
-    statBoxTotal:'/api/con/total',
-    statBoxLiked:'/api/con/liked',
-    statBoxDownloaded:'/api/con/downloaded',
-    statBoxViewed:'/api/con/viewed',
+    statBoxTotal:'/api/articles/total',
+    statBoxLiked:'/api/article/history/total/liked',
+    statBoxLikedPercentage:'/api/articles/history/percentage/liked',
+    statBoxDownloaded:'/api/article/history/total/downloaded',
+    statBoxDownloadedPercentage:'/api/articles/history/percentage/downloaded',
+    statBoxViewed:'/api/article/history/total/viewed',
+    statBoxViewedPercentage:'/api/articles/history/percentage/viewed',
+    trending:'',
     fileUpload:'/admin/api/uploadfile',
     add:'/api/articles/add'
   };

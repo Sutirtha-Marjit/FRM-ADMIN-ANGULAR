@@ -1,10 +1,13 @@
+@sidePadd:14px;
+@topPadd:20px;
 .cake{
     width:100%;
     height:130px;
     background-color:white;
-    padding:20px 14px;
+    padding:@topPadd @sidePadd;
     margin:25px 0px 25px 0px;
     animation: appearSide 1s ease-out;
+    position: relative;
     &.dark-theme{
         color:white !important;
         *{
@@ -15,12 +18,27 @@
     .big-text{
         font-weight:bold;
         font-size:22px;
-        margin-top: 6px;
         animation: appearSide 1.5s ease-out;
+        position: absolute;
+        left:@sidePadd;
+        bottom:@topPadd;
     }
     small{
         font-size:10px;
         color:#a9a9a9;
         animation: appearSide 1.3s ease-out;
+    }
+
+    .percentageBox{
+        position: absolute;
+        right:@sidePadd;
+        top:@topPadd;
+        width:120px;
+        height:120px;
+        text-align: right;
+        span{
+            font-size: 12px;
+            font-weight: 1000;
+        }
     }
 }

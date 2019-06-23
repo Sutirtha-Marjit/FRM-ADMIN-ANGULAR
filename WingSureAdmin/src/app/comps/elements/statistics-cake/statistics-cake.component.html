@@ -3,6 +3,9 @@
       <span *ngIf="config.inProgress" class="preloader {{getPreloaderClass()}}"></span>
       <div><small>{{config.smallText}}</small></div>
       <div class="big-text">{{getBigNumber()}}</div>
+      <div class="percentageBox" *ngIf="percentageConfig && percentageConfig.on">
+        <span>{{percentageConfig.percent}}%</span>
+      </div>
   </div>
   <div *ngIf="config.errorData" class="cake roundSquare big-shadow" [ngStyle]="{'background':'#fff'}">
     <app-failure-box [className]="'compact'" [errorObj]="config.errorData"></app-failure-box>

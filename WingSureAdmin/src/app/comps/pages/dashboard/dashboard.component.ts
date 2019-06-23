@@ -15,10 +15,11 @@ import { AppErrorObject } from '../../../datatypes/Datatypes';
 export class DashboardComponent implements OnInit {
 
 
-  
+  private currentTimeSlot=90;
   private statisticsCakeArray: Array<StatCakeConfig> = [];
   public statisticsTimeIntervalOptions: Array<{ name: string, val: number, selected: boolean }> = [];
   public statisticsErrorObject:AppErrorObject = null;
+  public statisticsPercentageArray=[];
 
   public megaChartOptions: any = null;
   public Highcharts = null;
@@ -34,6 +35,8 @@ export class DashboardComponent implements OnInit {
   }
 
   onTImeSlotSelected(e) {
+    console.log(e);
+    this.currentTimeSlot = e.val;
     this.populateStatisticsCake();
   }
 
@@ -67,11 +70,19 @@ export class DashboardComponent implements OnInit {
   private populateStatisticsCake() {
 
     const urls = [
-      this.reqURLService.getAPIURLS().statBoxTotal,
+      `${this.reqURLService.getAPIURLS().statBoxTotal}/${this.currentTimeSlot}`,
       this.reqURLService.getAPIURLS().statBoxViewed,
       this.reqURLService.getAPIURLS().statBoxDownloaded,
       this.reqURLService.getAPIURLS().statBoxLiked
     ]
+
+    const urlsPercentage = [
+      '',
+      this.reqURLService.getAPIURLS().statBoxViewedPercentage,
+      this.reqURLService.getAPIURLS().statBoxDownloadedPercentage,
+      this.reqURLService.getAPIURLS().statBoxLikedPercentage
+    ];
+
     this.statisticsCakeArray = [
       {
         bigText: '',
@@ -105,8 +116,13 @@ export class DashboardComponent implements OnInit {
     ];
 
     urls.forEach((url, i) => {
+      let p={};
       const $index = i;
-      this.http.get(url).subscribe((data: any) => {
+      if(i>0){
+        p = {no_of_days:this.currentTimeSlot};
+      }
+      
+      this.http.get(url,{params:p}).subscribe((data: any) => {
         this.statisticsCakeArray[$index].inProgress = false;
         this.statisticsCakeArray[$index].bigText = data;
         this.statisticsCakeArray[$index].errorData = null;
@@ -118,7 +134,20 @@ export class DashboardComponent implements OnInit {
           description: errorData.message
         };
       });
-    })
+
+      if(urlsPercentage[i].length>0){
+        this.http.get(urlsPercentage[i],{params:p}).subscribe((percentageData:any)=>{
+          this.statisticsPercentageArray[$index]={
+            percent:parseInt(percentageData,0),
+            on:true,
+            up:true
+          };
+        },()=>{
+
+        })
+      }
+
+    });
 
 
 

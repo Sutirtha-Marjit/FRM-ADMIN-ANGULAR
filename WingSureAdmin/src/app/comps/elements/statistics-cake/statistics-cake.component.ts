@@ -9,7 +9,11 @@ import {StatCakeConfig} from '../../../datatypes/Datatypes';
 export class StatisticsCakeComponent implements OnInit {
 
   
-
+  @Input() percentageConfig = {
+    percent:0,
+    on:false,
+    up:true
+  };
   @Input() config:StatCakeConfig = {
     bgColor:'#ffffff',
     bigText:'',
@@ -18,7 +22,7 @@ export class StatisticsCakeComponent implements OnInit {
     isDark:true,
     inProgress:true,
     errorData:null
-  }
+  };
   constructor() { }
 
   ngOnInit() {
