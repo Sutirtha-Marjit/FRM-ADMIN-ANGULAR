@@ -140,7 +140,7 @@ export class UploadStatusBoxComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    console.log(this.info);
+    
     this.showSelectedFIle(this.info.file);
 
 

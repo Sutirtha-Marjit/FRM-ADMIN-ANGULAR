@@ -127,9 +127,9 @@ export class UploadExpandScreenComponent implements OnInit {
         id: `${Math.random()}`.replace('.', el.name),
         contentURL: '',
         inProgress: true,
-        title: 'An Image',
-        description: 'Some description...',
-        tags: 'insurance,agriculture',
+        title: '',
+        description: '',
+        tags: '',
         mediaTYpe: this.tplChoice,
         defaultThumbnailPath: '',
         file:advFrmData.data.get(`toupload_${i}`)
