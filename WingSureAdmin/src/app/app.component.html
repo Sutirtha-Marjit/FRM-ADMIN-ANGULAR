@@ -1,5 +1,5 @@
 <div class="app-wrap">
-  <app-header-segment (uploadClick)="uploadAction($event)" *ngIf="loginProperties.loggedIn">
+  <app-header-segment (whenSignOut)="signout($event)"  (uploadClick)="uploadAction($event)" *ngIf="loginProperties.loggedIn">
   </app-header-segment>
   <div class="body-content loggedIn-{{loginProperties.loggedIn}}">
       <router-outlet (activate)='onActivate($event)'></router-outlet>

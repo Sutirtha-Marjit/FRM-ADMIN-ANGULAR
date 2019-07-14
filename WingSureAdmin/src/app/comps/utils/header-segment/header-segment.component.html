@@ -14,7 +14,7 @@
                     <a><span class="icon icon-settings"></span></a>
                   </div>
                   <div class="inline-block">
-                      <app-user-welcome></app-user-welcome>  
+                      <app-user-welcome (whenSignOut)="signout($event)"></app-user-welcome>  
                   </div>
               </div>
           </div>

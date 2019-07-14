@@ -27,6 +27,11 @@ export class AppComponent implements OnInit{
     }
   }
 
+  signout($event){
+    this.loginProperties.loggedIn = false;
+    this.router.navigateByUrl('login');
+  }
+
   ngOnInit(){
     this.router.events.subscribe((e)=>{
       if(e instanceof NavigationEnd){

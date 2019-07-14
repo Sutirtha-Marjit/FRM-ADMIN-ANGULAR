@@ -1,5 +1,6 @@
-import { Component, OnInit, AfterViewChecked, EventEmitter } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, EventEmitter, ViewChild } from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
+import { NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {Router} from '@angular/router';
 import {RawHttpService} from '../../facility/raw-http.service';
 import {AuthTokenObject} from '../../datatypes/Datatypes';
@@ -12,15 +13,19 @@ import {CommonRequestInterceptor} from '../../interceptors/CommonRequestIntercep
 })
 export class LoginScreenComponent implements OnInit , AfterViewChecked{
 
-  public carouselON=false;
+
+  @ViewChild('forgotpasswordTPL') forgotpasswordTPL;
+  public carouselON=true;
   public loginFormMain:FormGroup = null;
+  public forgotPasswordGroup:FormGroup = null;
   public whenLoginSuccessful = new EventEmitter<AuthTokenObject>();
   public loginError = false;
   public inProgress = false;
   constructor(
     private http:RawHttpService,
     private interceptor:CommonRequestInterceptor,
-    private router:Router
+    private router:Router,
+    private modalService: NgbModal
     ) { 
     
   }
@@ -55,16 +60,24 @@ export class LoginScreenComponent implements OnInit , AfterViewChecked{
     }
   }
 
+  forgotPasswordWindow(){
+    if(this.forgotpasswordTPL){
+      this.modalService.open(this.forgotpasswordTPL);
+    }
+    
+  }
+
   ngOnInit() {
     
     
     this.loginFormMain = new FormGroup({
-      // toSigninUserName : new FormControl('sut',Validators.required),
-      // toSigninPassword : new FormControl('password123',Validators.required)      
       toSigninUserName : new FormControl('',Validators.required),
       toSigninPassword : new FormControl('',Validators.required)      
     });
 
+    this.forgotPasswordGroup = new FormGroup({
+      userEmail : new FormControl('',[Validators.required, Validators.email])
+    });
     
     
   }

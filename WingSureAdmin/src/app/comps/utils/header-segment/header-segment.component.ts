@@ -8,9 +8,14 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class HeaderSegmentComponent implements OnInit {
 
   @Output() uploadClick = new EventEmitter<MouseEvent>();
+  @Output() whenSignOut = new EventEmitter<any>();
   constructor() { }
 
   ngOnInit() {
+  }
+
+  signout($event){
+    this.whenSignOut.emit($event);
   }
 
   uploadAction($event){
