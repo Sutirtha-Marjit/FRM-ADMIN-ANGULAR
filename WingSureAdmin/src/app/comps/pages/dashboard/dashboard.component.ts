@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit {
   public Highcharts = null;
   public chartConstructor = '';
 
-  public trendingData: Array<FeaturedBlockDataSet> = [];
+  public trendingData: Array<FeaturedBlockDataSet> = null;
   public mostPopularArticles: Array<FeaturedBlockDataSet> = [];
   public mostPopularImages: Array<FeaturedBlockDataSet> = [];
   public mostPopularVideos: Array<FeaturedBlockDataSet> = [];
@@ -154,22 +154,30 @@ export class DashboardComponent implements OnInit {
   }
 
   private populateTrendingData() {
-    for (let i = 0; i < 4; i++) {
-      this.trendingData[i] = {
-        id: `${new Date().getTime()}`,
-        pattern: 'SHORT_PATTERN_0',
-        heading: 'Some heading text',
-        viewed: 10000,
-        liked: 1000,
-        downloaded: 500,
-        listened: 500,
-        dateOfPublish: new Date(),
-        thumbnail: './assets/images/default/pattern-thumbnail.01.jpg',
-        expandURL: '',
-        resourceURL: '',
-        mediaTYpe: 'VIDEO'
-      };
-    }
+    this.trendingData = [];
+    this.http.get(this.reqURLService.getAPIURLS().trending,{}).subscribe((data:any)=>{
+      
+      data.forEach((el)=>{
+        this.trendingData.push({
+          id:el.training_article_id,
+          pattern:'SHORT_PATTERN_0',
+          heading: el.title,
+          viewed: el.max_total_viewed,
+          liked: el.max_total_liked,
+          downloaded: el.max_total_downloaded || 0,
+          listened: el.max_total_listened || 0,
+          dateOfPublish: el.date_of_publish || new Date(),
+          thumbnail: el.thumbnail || el.content_url,
+          expandURL:'',
+          resourceURL:'',
+          mediaType: el.content_type
+        });
+      });
+      console.log('Trending data',this.trendingData);
+    },()=>{
+      console.log('trending failed');
+    });
+    
 
   }
 
@@ -187,7 +195,7 @@ export class DashboardComponent implements OnInit {
         thumbnail: './assets/images/default/pattern-thumbnail.01.jpg',
         expandURL: '',
         resourceURL: '',
-        mediaTYpe: 'ARTICLE'
+        mediaType: 'ARTICLE'
       };
     }
 
@@ -207,7 +215,7 @@ export class DashboardComponent implements OnInit {
         thumbnail: './assets/images/default/pattern-thumbnail.01.jpg',
         expandURL: '',
         resourceURL: '',
-        mediaTYpe: 'IMAGE'
+        mediaType: 'IMAGE'
       };
     }
 
@@ -227,7 +235,7 @@ export class DashboardComponent implements OnInit {
         thumbnail: './assets/images/default/pattern-thumbnail.01.jpg',
         expandURL: '',
         resourceURL: '',
-        mediaTYpe: 'VIDEO'
+        mediaType: 'VIDEO'
       };
     }
 

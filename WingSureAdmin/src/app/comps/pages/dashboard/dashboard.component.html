@@ -50,7 +50,10 @@
       <div class="col-md-4">
         <h6>Trending</h6>
         <div class="roundSquare" style="background:white; padding:10px;">
-          <app-featured-data-block [data]="item" *ngFor="let item of trendingData"></app-featured-data-block>
+          <ng-container *ngIf="!trendingData" [ngTemplateOutlet]="commonPreloader"></ng-container>
+          <ng-container *ngIf="trendingData">
+            <app-featured-data-block  [data]="item" *ngFor="let item of trendingData"></app-featured-data-block>
+          </ng-container>
         </div>
       </div>
     </div>
@@ -95,6 +98,14 @@
 <ng-template #StatisticsCakeSection>
   <div class="col-md-3" *ngFor="let cake of statisticsCakeArray; let i=index">
     <app-statistics-cake id="{{i}}" [percentageConfig]="statisticsPercentageArray[i]" [config]="cake"></app-statistics-cake>
+  </div>
+</ng-template>
+
+<ng-template #commonPreloader>
+  <div style="text-align:center; padding:15px;">
+    <span class="preloader preloader-dark"></span>
+    <hr class="bg-primary"/>
+    <small>Loading</small>
   </div>
 </ng-template>
 

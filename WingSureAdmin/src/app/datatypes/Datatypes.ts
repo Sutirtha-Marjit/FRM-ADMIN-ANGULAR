@@ -48,7 +48,7 @@ export interface FeaturedBlockDataSet{
     thumbnail:string;
     expandURL?:string;
     resourceURL:string;
-    mediaTYpe:string,
+    mediaType:string,
 }
 
 export interface AppErrorObject{

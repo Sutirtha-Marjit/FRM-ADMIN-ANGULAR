@@ -17,7 +17,10 @@ export class RequestURLService {
     statBoxDownloadedPercentage:'/api/articles/history/percentage/downloaded',
     statBoxViewed:'/api/article/history/total/viewed',
     statBoxViewedPercentage:'/api/articles/history/percentage/viewed',
-    trending:'',
+    trending:'api/articles/trending',
+    mpArticles:'api/articles/popular/article',
+    mpVideos:'api/articles/popular/video',
+    mpImage:'api/articles/popular/image',
     fileUpload:'/admin/api/uploadfile',
     add:'/api/articles/add'
   };
