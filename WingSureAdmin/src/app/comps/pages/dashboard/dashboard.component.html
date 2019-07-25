@@ -63,7 +63,10 @@
       <div class="col-md-12">
           <h6>Most popular video</h6>
           <div class="roundSquare" style="background:white;  padding:10px;">
-              <app-featured-data-block [data]="item" *ngFor="let item of mostPopularVideos"></app-featured-data-block>
+              <ng-container *ngIf="!mostPopularVideos" [ngTemplateOutlet]="commonPreloader"></ng-container>
+              <ng-container *ngIf="mostPopularVideos">
+                <app-featured-data-block [data]="item" *ngFor="let item of mostPopularVideos"></app-featured-data-block>
+              </ng-container>
           </div>
         </div>
   </div>

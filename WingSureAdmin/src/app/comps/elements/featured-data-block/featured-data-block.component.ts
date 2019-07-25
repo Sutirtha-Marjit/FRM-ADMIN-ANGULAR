@@ -21,7 +21,7 @@ export class FeaturedDataBlockComponent implements OnInit {
     thumbnail:'./assets/images/default/pattern-thumbnail.01.jpg',
     expandURL:'',
     resourceURL:'',
-    mediaTYpe:'VIDEO'
+    mediaType:'VIDEO'
   };
   
   definedPatterns = {
