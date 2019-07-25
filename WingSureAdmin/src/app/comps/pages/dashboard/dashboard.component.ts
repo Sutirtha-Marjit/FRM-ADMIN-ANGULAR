@@ -182,26 +182,34 @@ export class DashboardComponent implements OnInit {
   }
 
   private populateMostPopularArticles() {
-    for (let i = 0; i < 8; i++) {
-      this.mostPopularArticles[i] = {
-        id: `${new Date().getTime()}`,
-        pattern: 'SHORT_PATTERN_0',
-        heading: 'Some heading text',
-        viewed: 10000,
-        liked: 1000,
-        downloaded: 500,
-        listened: 500,
-        dateOfPublish: new Date(),
-        thumbnail: './assets/images/default/pattern-thumbnail.01.jpg',
-        expandURL: '',
-        resourceURL: '',
-        mediaType: 'ARTICLE'
-      };
-    }
+    this.mostPopularArticles=[];
+    this.http.get(this.reqURLService.getAPIURLS().mpArticles,{}).subscribe((data:any)=>{
+        console.log('populateMostPopularArticles',data);
+        data.forEach((el)=>{
+          this.mostPopularArticles.push({
+            id:el.training_article_id,
+            pattern:'SHORT_PATTERN_0',
+            heading: el.title,
+            viewed:el.max_total_viewed || 0,
+            liked:el.max_total_liked || 0,
+            downloaded:0,
+            listened:0,
+            dateOfPublish: new Date(),
+            thumbnail: './assets/images/default/pattern-thumbnail.01.jpg',
+            expandURL:el.content_url,
+            resourceURL:el.content_url,
+            mediaType: 'ARTICLE'
+          })
+        })
+    },()=>{
+
+    })
+    
 
   }
 
   private populateMostPopularImages() {
+    
     for (let i = 0; i < 4; i++) {
       this.mostPopularImages[i] = {
         id: `${new Date().getTime()}`,
