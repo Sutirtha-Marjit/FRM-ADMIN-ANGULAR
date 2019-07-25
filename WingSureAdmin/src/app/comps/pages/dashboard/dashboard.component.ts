@@ -30,8 +30,15 @@ export class DashboardComponent implements OnInit {
   public mostPopularImages: Array<FeaturedBlockDataSet> = [];
   public mostPopularVideos: Array<FeaturedBlockDataSet> = [];
 
-  constructor(private http: HttpClient, private reqURLService: RequestURLService) {
+  public requestFailCollection = null;
 
+  constructor(private http: HttpClient, private reqURLService: RequestURLService) {
+    this.requestFailCollection = {
+      mostPopularArticles:null,
+      mostPopularImages:null,
+      mostPopularVideos:null,
+      trendingData:null
+    }
   }
 
   onTImeSlotSelected(e) {
@@ -183,8 +190,9 @@ export class DashboardComponent implements OnInit {
 
   private populateMostPopularArticles() {
     this.mostPopularArticles=[];
+    this.requestFailCollection.mostPopularArticles = null;
     this.http.get(this.reqURLService.getAPIURLS().mpArticles,{}).subscribe((data:any)=>{
-        console.log('populateMostPopularArticles',data);
+        
         data.forEach((el)=>{
           this.mostPopularArticles.push({
             id:el.training_article_id,
@@ -201,31 +209,48 @@ export class DashboardComponent implements OnInit {
             mediaType: 'ARTICLE'
           })
         })
-    },()=>{
-
+    },(error:HttpErrorResponse)=>{
+      this.requestFailCollection.mostPopularArticles = {
+        heading:error.statusText,
+        description:error.message,
+        code:error.status
+      };
     })
     
 
   }
 
   private populateMostPopularImages() {
-    
-    for (let i = 0; i < 4; i++) {
-      this.mostPopularImages[i] = {
-        id: `${new Date().getTime()}`,
-        pattern: 'SHORT_PATTERN_0',
-        heading: 'Some heading text',
-        viewed: 10000,
-        liked: 1000,
-        downloaded: 500,
-        listened: 500,
-        dateOfPublish: new Date(),
-        thumbnail: './assets/images/default/pattern-thumbnail.01.jpg',
-        expandURL: '',
-        resourceURL: '',
-        mediaType: 'IMAGE'
+    this.mostPopularImages = [];
+    this.requestFailCollection.mostPopularImages = null;
+    this.http.get(this.reqURLService.getAPIURLS().mpImage,{}).subscribe((data:any)=>{
+      console.log(data,'populateMostPopularImages');
+      data.forEach((el)=>{
+        this.mostPopularImages.push({
+          id:el.training_article_id,
+          pattern: 'SHORT_PATTERN_0',
+          heading: el.title,
+          viewed:el.max_total_viewed || 0,
+          liked:el.max_total_liked || 0,
+          downloaded: 0,
+          listened: 0,
+          dateOfPublish: new Date(),
+          thumbnail: el.content_url,
+          expandURL: el.content_url,
+          resourceURL: el.content_url,
+          mediaType: 'IMAGE'
+        });
+
+      });
+     
+    },(error:HttpErrorResponse)=>{
+      this.requestFailCollection.mostPopularImages = {
+        heading:error.statusText,
+        description:error.message,
+        code:error.status
       };
-    }
+    });
+    
 
   }
 
